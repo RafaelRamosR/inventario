@@ -1,0 +1,24 @@
+
+
+.state-overview .value {
+    width: 58%;
+    padding-top: 0px;
+}
+
+
+.state-overview .value {
+    float: none;
+    margin-top: -14px;
+}
+
+
+.state-overview .symbol, .state-overview .value {
+    display: inline-block;
+    text-align: center;
+}
+
+
+::selection {
+    background: #FF6C60;
+    color: #fff;
+}
