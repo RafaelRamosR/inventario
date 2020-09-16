@@ -556,15 +556,19 @@ $modulos["proveedores"] = [
 
 $modulos["contenido"] = [
     "ruta" => "modulos/contenido/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "vertical"
+            "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
+        ],
+        "asignar" => [
+            "archivo" => "asignar.php",
+            "diseño" => "json"
         ],
         "agregar" => [
             "archivo" => "agregar.php",
@@ -577,11 +581,7 @@ $modulos["contenido"] = [
         "eliminar" => [
             "archivo" => "eliminar.php",
             "diseño" => "json"
-        ],
-        "datos" => [
-            "archivo" => "cargar_datos.php",
-            "diseño" => "json"
-        ],
+        ]
     ]
 ];
 
