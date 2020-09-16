@@ -1,17 +1,16 @@
 <?php
 require_once("conexion.php");
+$id_contenido = $_POST['id_contenido'];
+$sql = "DELETE FROM contenido WHERE id_contenido ='$id_contenido'";
 
-$contenido_id = $_POST['contenido_id'];
-
-$sql = "DELETE FROM  contenido WHERE contenido_id ='$contenido_id'";
-
-mysqli_query($conexion, $sql);
-$respuesta = [];
+mysqli_query($conexion,$sql);
+$resultado=[];
 if (mysqli_error($conexion) == "") {
-    $respuesta['error'] = false;
-    $respuesta['msg'] = "Registro eliminado con éxito.";
+    $resultado["error"] = false;
+    $resultado["mensaje"] = "Datos eliminados con éxito.";
 } else {
-    $respuesta['error'] = true;
-    $respuesta['msg'] = mysqli_error($conexion);
+    $resultado["error"] = true;
+    $resultado["mensaje"] = mysqli_error($conexion);
 }
-echo json_encode($respuesta);
+// json_encode convierte el arreglo en formato JSON
+echo json_encode($resultado);

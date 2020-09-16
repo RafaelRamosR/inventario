@@ -554,36 +554,68 @@ $modulos["proveedores"] = [
     ]
 ];
 
+
 $modulos["contenido"] = [
-    "ruta" => "modulos/contenido/",
-    //"verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "listar" => [
-            "archivo" => "tabla.php",
-            "diseño" => "html"
-        ],
-        "asignar" => [
-            "archivo" => "asignar.php",
-            "diseño" => "json"
-        ],
-        "agregar" => [
-            "archivo" => "agregar.php",
-            "diseño" => "json"
-        ],
-        "modificar" => [
-            "archivo" => "modificar.php",
-            "diseño" => "json"
-        ],
-        "eliminar" => [
-            "archivo" => "eliminar.php",
-            "diseño" => "json"
-        ]
-    ]
+  "ruta" => "modulos/contenido/",
+  "verificar_permisos" => true,
+  "acciones" => [
+      "ver" => [
+          "archivo" => "index.php",
+          "diseño" => "vertical"
+      ],
+      "listar" => [
+          "archivo" => "listado.php",
+          "diseño" => "html"
+      ],
+      "agregar" => [
+          "archivo" => "agregar.php",
+          "diseño" => "json"
+      ],
+      "modificar" => [
+          "archivo" => "modificar.php",
+          "diseño" => "json"
+      ],
+      "eliminar" => [
+          "archivo" => "eliminar.php",
+          "diseño" => "json"
+      ],
+      "datos" => [
+          "archivo" => "cargar_datos.php",
+          "diseño" => "json"
+      ],
+  ]
 ];
+
+// $modulos["contenido"] = [
+//     "ruta" => "modulos/contenido/",
+//     //"verificar_permisos" => true,
+//     "acciones" => [
+//         "ver" => [
+//             "archivo" => "index.php",
+//             "diseño" => "horizontal"
+//         ],
+//         "listar" => [
+//             "archivo" => "tabla.php",
+//             "diseño" => "html"
+//         ],
+//         "asignar" => [
+//             "archivo" => "asignar.php",
+//             "diseño" => "json"
+//         ],
+//         "agregar" => [
+//             "archivo" => "agregar.php",
+//             "diseño" => "json"
+//         ],
+//         "modificar" => [
+//             "archivo" => "modificar.php",
+//             "diseño" => "json"
+//         ],
+//         "eliminar" => [
+//             "archivo" => "eliminar.php",
+//             "diseño" => "json"
+//         ]
+//     ]
+// ];
 
 $modulos["rol"] = [
     "ruta" => "modulos/rol/",
