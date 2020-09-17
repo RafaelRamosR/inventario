@@ -557,11 +557,11 @@ $modulos["proveedores"] = [
 
 $modulos["contenido"] = [
   "ruta" => "modulos/contenido/",
-  "verificar_permisos" => true,
+  //"verificar_permisos" => true,
   "acciones" => [
       "ver" => [
           "archivo" => "index.php",
-          "diseño" => "vertical"
+          "diseño" => "horizontal"
       ],
       "listar" => [
           "archivo" => "listado.php",

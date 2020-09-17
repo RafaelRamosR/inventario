@@ -15,7 +15,7 @@ if (isset($_GET['num_registros'])) {
 //Filtros de busqueda
 $filtros = "";
 
- 
+
 
 if (isset($_GET['titulo']) == true &&  $_GET['titulo']  != "") {
     $titulo = $_GET['titulo'];
@@ -54,8 +54,7 @@ $sql .= " ORDER BY titulo LIMIT $inicio, $num_registros  ";
         <tr>
             <th style="width: 30px;">No</th>
             <th style="width: 200px;">Modulo</th>
-            <th style="">Titulo</th>
-          
+            <th>Titulo</th>
             <th style="width: 100px;">Acciones</th>
         </tr>
     </thead>
@@ -69,7 +68,7 @@ $sql .= " ORDER BY titulo LIMIT $inicio, $num_registros  ";
             echo "<td>$num</td>";
             echo "<td>$row[modulo]</td>";
             echo "<td>$row[titulo]</td>";
-       
+
             echo "<td class='acciones'>
                    
                     <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_contenido]\")'>
@@ -100,23 +99,23 @@ $sql .= " ORDER BY titulo LIMIT $inicio, $num_registros  ";
             <option value="100">100</option>
         </select>
 
-<div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-inicio"><i class="fas fa-angle-double-left"></i></button>
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-anterior"><i class="fas fa-angle-left"></i></button>
-      
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled><input class="utch" type="text" value="<?php echo $pagina ?>" id="pagina_actual" name="pagina_actual"></button>
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled><input class="utch" type="text" value="<?php echo $num_paginas ?>" id="num_paginas" disabled></button>
-      
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-siguiente"><i class="fas fa-angle-right"></i></button>
-      <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-final"><i class="fas fa-angle-double-right"></i></button>
-</div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-inicio"><i class="fas fa-angle-double-left"></i></button>
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-anterior"><i class="fas fa-angle-left"></i></button>
+
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled><input class="utch" type="text" value="<?php echo $pagina ?>" id="pagina_actual" name="pagina_actual"></button>
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled><input class="utch" type="text" value="<?php echo $num_paginas ?>" id="num_paginas" disabled></button>
+
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-siguiente"><i class="fas fa-angle-right"></i></button>
+            <button type="button" class="btn btn-primary btn-rounded btn-sm" id="btn-final"><i class="fas fa-angle-double-right"></i></button>
+        </div>
 
 
-                <?php
-                $desde = $inicio + 1;
-                $hasta = $inicio+ $num_registros;
-                echo "$desde - $hasta de $cantidad";
-                ?>
+        <?php
+        $desde = $inicio + 1;
+        $hasta = $inicio + $num_registros;
+        echo "$desde - $hasta de $cantidad";
+        ?>
     </form>
 </div>
 

@@ -1,6 +1,4 @@
 <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
-
 
 <style type="text/css">
     .acciones a {
@@ -32,8 +30,6 @@
         color: blue !important;
     }
 </style>
-
-
 
 <div id="contenedor-listado" class="content mt-3" style="max-width:1000px; margin:auto">
 
@@ -69,13 +65,7 @@
     </div>
 </div>
 
-
-
-
-
-
 <!-- Formulario -->
-
 <div id="contenedor-formulario" class="content mt-3" style="margin:auto; display:none">
     <div class="card">
         <div class="card-header">
@@ -133,15 +123,15 @@
         $("#btn-modificar").hide();
         $("#formulario")[0].reset(); //limpiar formulario
         $("#formulario input, #formulario select").prop("disabled", false);
-        tinyMCE.get('contenido').getBody().setAttribute('contenteditable', true);
-
+        const contenido = document.getElementById('contenido');
+        contenido.setAttribute('contenteditable', true);
     });
 
     $("#btn-guardar").click(function() {
         var parametros = $("#formulario").serialize();
         var contenido = tinyMCE.get('contenido').getContent();
-            parametros = parametros + "&contenido=" + encodeURIComponent(contenido);
-            // alert(parametros);
+        parametros = parametros + "&contenido=" + encodeURIComponent(contenido);
+        // alert(parametros);
         $.post("?modulo=contenido&accion=agregar", parametros, function(respuesta) {
             //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
             var r = jQuery.parseJSON(respuesta);
@@ -220,7 +210,6 @@
         }
     }
 
-
     function modificar(id_contenido) {
         $("#titulo").html("Modificar contenido");
         var parametros = "id_contenido=" + id_contenido;
@@ -258,26 +247,12 @@
         cargar_listado();
     });
 
-    function cargar_listado() {
-        var parametros = $("#formulario-busqueda").serialize() + "&" +
-            $("#formulario-paginacion").serialize();
-        $("#listado").load("?modulo=contenido&accion=listar", parametros);
-    }
-
-
     tinymce.init({
         selector: 'textarea#contenido',
         height: 500,
         menubar: true,
-
         language: 'es',
-        /*plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],*/
         plugins: 'print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons',
-
         toolbar: 'undo redo | formatselect | ' +
             ' bold italic backcolor | alignleft aligncenter ' +
             ' alignright alignjustify | bullist numlist outdent indent |' +
@@ -287,4 +262,10 @@
             '//www.tiny.cloud/css/codepen.min.css'
         ]
     });
+
+    function cargar_listado() {
+        var parametros = $("#formulario-busqueda").serialize() + "&" +
+            $("#formulario-paginacion").serialize();
+        $("#listado").load("?modulo=contenido&accion=listar", parametros);
+    }
 </script>
