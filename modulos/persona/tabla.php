@@ -4,28 +4,35 @@ $filtros = "";
 if (isset($_GET['identifica']) &&  $_GET['identifica'] != "") {
     $idetifica = $_GET['identifica'];
     $idetifica = str_replace(" ", "%", $idetifica);
-    $filtros .= "  AND  Num_Identificacion LIKE '%$idetifica%'";
+    $filtros .= " AND Num_Identificacion LIKE '%$idetifica%'";
 }
 
 if (isset($_GET['nombre']) &&  $_GET['nombre'] != "") {
     $nombre = $_GET['nombre'];
-    //Buscar espacio y reemplazarlos por %
     $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  CONCAT_WS(' ',persona.nombre,persona.apellido) LIKE '%$nombre%'";
+    $filtros .= " AND CONCAT_WS(' ',p.primer_nombre,p.primer_apellido) LIKE '%$nombre%'";
+}
+
+if (isset($_GET['fecha']) == true &&  $_GET['fecha']  != "") {
+    $filtros .= " AND p.fecha_nacimiento = '$_GET[fecha]' ";
 }
 
 if (isset($_GET['municipio']) &&  $_GET['municipio'] != "") {
     $municipio = $_GET['municipio'];
-    //Buscar espacio y reemplazarlos por %
     $municipio = str_replace(" ", "%", $municipio);
-    $filtros .= "  AND  municipio.nombre LIKE '%$municipio%'";
+    $filtros .= " AND m.nombre LIKE '%$municipio%'";
 }
 
 if (isset($_GET['telefono']) &&  $_GET['telefono'] != "") {
     $telefono = $_GET['telefono'];
-    //Buscar espacio y reemplazarlos por %
     $telefono = str_replace(" ", "%", $telefono);
-    $filtros .= "  AND  persona.telefono LIKE '%$telefono%'";
+    $filtros .= " AND telefono_principal LIKE '%$telefono%'";
+}
+
+if (isset($_GET['telefono_alt']) &&  $_GET['telefono_alt'] != "") {
+    $telefono = $_GET['telefono_alt'];
+    $telefono = str_replace(" ", "%", $telefono);
+    $filtros .= " AND telefono_alternativo LIKE '%$telefono%'";
 }
 
 $sql_base = "SELECT              
@@ -78,7 +85,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
                     <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="fecha_nacimiento" class="form-control form-control-sm" value="<?php echo isset($_GET['fecha_nacimiento']) ? $_GET['fecha_nacimiento'] : ""  ?>" />
+                    <input type="date" name="fecha" class="form-control form-control-sm" value="<?php echo isset($_GET['fecha_nacimiento']) ? $_GET['fecha_nacimiento'] : ""  ?>" />
                 </th>
                 <th scope="col">
                     <input type="text" name="municipio" class="form-control form-control-sm" value="<?php echo isset($_GET['municipio']) ? $_GET['municipio'] : ""  ?>" />
