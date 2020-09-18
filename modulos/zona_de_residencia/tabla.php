@@ -14,6 +14,7 @@ $sql_base = "SELECT
     WHERE TRUE $filtros
     ORDER BY nombre
 ";
+
 //Paginación
 $num_reg_paginas = 5;
 $pagina_actual = $_GET['pagina_actual'];
@@ -37,7 +38,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
                 <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="identifica" class="form-control form-control-sm" value="<?php echo isset($_GET['identifica']) ? $_GET['identifica'] : ""  ?>" />
+                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
