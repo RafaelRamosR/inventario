@@ -1,56 +1,48 @@
 <?php
+
 $filtros = "";
 
-if (isset($_GET['identifica']) &&  $_GET['identifica'] != "") {
-    $idetifica = $_GET['identifica'];
-    $idetifica = str_replace(" ", "%", $idetifica);
-    $filtros .= " AND Num_Identificacion LIKE '%$idetifica%'";
+if (isset($_GET['nombre_producto']) == true &&  $_GET['nombre_producto']  != "") {
+    $filtros .= " AND p.id_producto = '$_GET[nombre_producto]' ";
 }
 
-if (isset($_GET['nombre']) &&  $_GET['nombre'] != "") {
-    $nombre = $_GET['nombre'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= " AND CONCAT_WS(' ',p.primer_nombre,p.primer_apellido) LIKE '%$nombre%'";
+if (isset($_GET['tipo_producto']) == true &&  $_GET['tipo_producto']  != "") {
+    $filtros .= " AND p.id_tipo_producto = '$_GET[tipo_producto]' ";
 }
 
-if (isset($_GET['fecha']) == true &&  $_GET['fecha']  != "") {
-    $filtros .= " AND p.fecha_nacimiento = '$_GET[fecha]' ";
+if (isset($_GET['modelo']) == true &&  $_GET['modelo']  != "") {
+    $filtros .= " AND p.modelo = '$_GET[modelo]' ";
 }
 
-if (isset($_GET['municipio']) &&  $_GET['municipio'] != "") {
-    $municipio = $_GET['municipio'];
-    $municipio = str_replace(" ", "%", $municipio);
-    $filtros .= " AND m.nombre LIKE '%$municipio%'";
+if (isset($_GET['fecha_adquisicion']) == true &&  $_GET['fecha_adquisicion']  != "") {
+    $filtros .= " AND p.fecha_adquisicion = '$_GET[fecha_adquisicion]' ";
 }
 
-if (isset($_GET['telefono']) &&  $_GET['telefono'] != "") {
-    $telefono = $_GET['telefono'];
-    $telefono = str_replace(" ", "%", $telefono);
-    $filtros .= " AND telefono_principal LIKE '%$telefono%'";
+if (isset($_GET['proveedor']) == true &&  $_GET['proveedor']  != "") {
+    $filtros .= " AND p.id_provedore = '$_GET[proveedor]' ";
 }
 
-if (isset($_GET['telefono_alt']) &&  $_GET['telefono_alt'] != "") {
-    $telefono = $_GET['telefono_alt'];
-    $telefono = str_replace(" ", "%", $telefono);
-    $filtros .= " AND telefono_alternativo LIKE '%$telefono%'";
+if (isset($_GET['referencia']) == true &&  $_GET['referencia']  != "") {
+    $filtros .= " AND p.referencia = '$_GET[referencia]' ";
 }
 
-$sql_base = "SELECT              
-    p.id_persona,
-    p.Num_Identificacion,
-    CONCAT_WS(' ', p.primer_nombre, p.primer_apellido) AS nombre,
-    p.fecha_nacimiento,
-    m.nombre AS municipio,
-    p.telefono_principal,
-    p.telefono_alternativo,
-    d.nombre AS departamento
-    FROM persona p
-    INNER JOIN municipio m ON p.id_municipio_de_nacimiento = m.id
-    INNER JOIN departamento d ON m.departamento = d.id
-    WHERE TRUE $filtros
-    ORDER BY nombre
-";
-
+$sql_base = "SELECT           
+            p.id_producto,
+            p.nombre AS nombre_producto,
+            tp.nombre AS nombre_tipo,
+            p.modelo,
+            p.stock,
+            p.fecha_adquisicion,
+            pr.nombre AS proveedor,
+            p.referencia
+        FROM
+            producto p
+        INNER JOIN
+            tipo_producto tp ON p.id_tipo_producto = tp.id_tipo_producto
+        INNER JOIN
+            proveedores pr ON p.id_provedore = pr.id_proveedor
+        WHERE TRUE $filtros
+                ";
 //Paginación
 $num_reg_paginas = 5;
 $pagina_actual = $_GET['pagina_actual'];
@@ -64,16 +56,17 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
 ?>
 
 <form id="form-filtros">
-    <table class="table table-striped mx-auto">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Identific.</th>
-                <th>Nombre</th>
-                <th>Fecha naci.</th>
-                <th>Municipio Naci</th>
-                <th>Telefono</th>
-                <th>Telefono alternativo</th>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Modelo</th>
+                <th>Stock</th>
+                <th>Adquisicion</th>
+                <th>Proveedor</th>
+                <th>Referencia</th>
                 <th>Acciones</th>
             </tr>
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
@@ -110,21 +103,22 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             while ($row = mysqli_fetch_assoc($rs)) {
                 echo "<tr>";
                 echo "<td>$num</td>";
-                echo "<td>$row[Num_Identificacion]</td>";
-                echo "<td>$row[nombre]</td>";
-                echo "<td>$row[fecha_nacimiento]</td>";
-                echo "<td>$row[municipio]</td>";
-                echo "<td>$row[telefono_principal]</td>";
-                echo "<td>$row[telefono_alternativo]</td>";
+                echo "<td>$row[nombre_producto]</td>";
+                echo "<td>$row[nombre_tipo]</td>";
+                echo "<td>$row[modelo]</td>";
+                echo "<td>$row[stock]</td>";
+                echo "<td>$row[fecha_adquisicion]</td>";
+                echo "<td>$row[proveedor]</td>";
+                echo "<td>$row[referencia]</td>";
                 echo "<td class='acciones'>
-                            <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_persona]\")'>
-                                <i class='fa fa-trash'></i>
-                            </a>
-                            <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_persona]\")'>
-                                <i class='fa fa-pencil-alt modificar'></i>
-                            </a>
-                        </td>
-                    ";
+                        <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_producto]\")'>
+                            <i class='fa fa-trash'></i>
+                        </a>
+                        <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_producto]\")'>
+                            <i class='fa fa-pencil-alt modificar'></i>
+                        </a>
+                    </td>
+                ";
                 echo "</tr>";
                 $num++;
             }

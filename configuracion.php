@@ -161,7 +161,7 @@ $modulos["producto"] = [
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -176,8 +176,8 @@ $modulos["producto"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
     ]

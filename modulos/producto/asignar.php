@@ -1,6 +1,6 @@
 <?php
 require_once("conexion.php");
-$id_producto = $_GET['id_producto'];
+$id_producto = $_GET['id'];
 $sql = "SELECT 
                 id_producto,
                 nombre,
