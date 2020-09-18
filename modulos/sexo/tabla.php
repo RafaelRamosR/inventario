@@ -2,7 +2,9 @@
 $filtros = "";
 
 if (isset($_GET['sexo']) == true &&  $_GET['sexo']  != "") {
-    $filtros .= " AND s.id_sexo = '$_GET[sexo]' ";
+    $nombre = $_GET['sexo'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= " AND s.nombre LIKE '%$nombre%'";
 }
 
 $sql_base = "SELECT
@@ -34,12 +36,10 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
                 <th>Nombre de sexo</th>
                 <th>Acciones</th>
             </tr>
-            <tr>
+            <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
+                <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="telefono" class="form-control form-control-sm" value="<?php echo isset($_GET['telefono']) ? $_GET['telefono'] : ""  ?>" />
-                </th>
-                <th scope="col">
-                    <input type="text" name="telefono_alt" class="form-control form-control-sm" value="<?php echo isset($_GET['telefono_alt']) ? $_GET['telefono_alt'] : ""  ?>" />
+                    <input type="text" name="sexo" class="form-control form-control-sm" value="<?php echo isset($_GET['sexo']) ? $_GET['sexo'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
