@@ -495,14 +495,14 @@ $modulos["permiso"] = [
 
 $modulos["zona_de_residencia"] = [
     "ruta" => "modulos/zona_de_residencia/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -517,8 +517,8 @@ $modulos["zona_de_residencia"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
     ]
