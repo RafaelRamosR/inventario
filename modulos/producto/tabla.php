@@ -55,6 +55,7 @@ $sql_base = "SELECT
     INNER JOIN tipo_producto tp ON p.id_tipo_producto = tp.id_tipo_producto
     INNER JOIN proveedores pr ON p.id_provedore = pr.id_proveedor
     WHERE TRUE $filtros
+    ORDER BY nombre_producto
 ";
 
 //Paginación
