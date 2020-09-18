@@ -2,7 +2,7 @@
 require_once("conexion.php");
 
 
-$id = $_POST['id_zona_de_residencia'];
+$id = $_POST['id'];
 
 $sql = "DELETE FROM zona_de_residencia WHERE id_zona_de_residencia='$id' ";
 mysqli_query($conexion, $sql);

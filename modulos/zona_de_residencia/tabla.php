@@ -12,6 +12,7 @@ $sql_base = "SELECT
     nombre
     FROM zona_de_residencia 
     WHERE TRUE $filtros
+    ORDER BY nombre
 ";
 //Paginación
 $num_reg_paginas = 5;

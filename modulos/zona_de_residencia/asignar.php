@@ -1,6 +1,6 @@
 <?php
 require_once("conexion.php");
-$id_zona_de_residencia = $_GET['id_zona_de_residencia'];
+$id_zona_de_residencia = $_GET['id'];
 $sql = "SELECT 
                id_zona_de_residencia,
                nombre
