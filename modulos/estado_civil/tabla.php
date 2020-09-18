@@ -1,8 +1,10 @@
 <?php
 $filtros = "";
 
-if (isset($_GET['estado_civil2']) == true &&  $_GET['estado_civil2']  != "") {
-    $filtros .= " AND e.id_estado_civil = '$_GET[estado_civil2]' ";
+if (isset($_GET['nombre']) == true &&  $_GET['nombre']  != "") {
+    $nombre = $_GET['nombre'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= " AND e.nombre LIKE '%$nombre%'";
 }
 
 $sql_base = "SELECT 
@@ -36,7 +38,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
                 <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="identifica" class="form-control form-control-sm" value="<?php echo isset($_GET['identifica']) ? $_GET['identifica'] : ""  ?>" />
+                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
