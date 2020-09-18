@@ -105,29 +105,29 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
         </thead>
         <tbody>
             <?php
-            $num = $primer_registro  + 1;
-            $rs = mysqli_query($conexion, $sql_final);
-            while ($row = mysqli_fetch_assoc($rs)) {
-                echo "<tr>";
-                echo "<td>$num</td>";
-                echo "<td>$row[Num_Identificacion]</td>";
-                echo "<td>$row[nombre]</td>";
-                echo "<td>$row[fecha_nacimiento]</td>";
-                echo "<td>$row[municipio]</td>";
-                echo "<td>$row[telefono_principal]</td>";
-                echo "<td>$row[telefono_alternativo]</td>";
-                echo "<td class='acciones'>
-                            <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_persona]\")'>
-                                <i class='fa fa-trash'></i>
-                            </a>
-                            <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_persona]\")'>
-                                <i class='fa fa-pencil-alt modificar'></i>
-                            </a>
-                        </td>
-                    ";
-                echo "</tr>";
-                $num++;
-            }
+                $num = $primer_registro  + 1;
+                $rs = mysqli_query($conexion, $sql_final);
+                while ($row = mysqli_fetch_assoc($rs)) {
+                    echo "<tr>";
+                    echo "<td>$num</td>";
+                    echo "<td>$row[Num_Identificacion]</td>";
+                    echo "<td>$row[nombre]</td>";
+                    echo "<td>$row[fecha_nacimiento]</td>";
+                    echo "<td>$row[municipio]</td>";
+                    echo "<td>$row[telefono_principal]</td>";
+                    echo "<td>$row[telefono_alternativo]</td>";
+                    echo "<td class='acciones'>
+                                <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_persona]\")'>
+                                    <i class='fa fa-trash'></i>
+                                </a>
+                                <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_persona]\")'>
+                                    <i class='fa fa-pencil-alt modificar'></i>
+                                </a>
+                            </td>
+                        ";
+                    echo "</tr>";
+                    $num++;
+                }
             ?>
         </tbody>
         <tfoot>
