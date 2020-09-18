@@ -1,13 +1,10 @@
 <?php
 require_once("conexion.php");
 
-
-$id = $_POST['id_sexo'];
+$id = $_POST['id'];
 
 $sql = "DELETE FROM sexo WHERE id_sexo='$id' ";
 mysqli_query($conexion, $sql);
-
-
 
 $r =[];
 if(mysqli_error($conexion)!="" ) {
@@ -19,6 +16,3 @@ if(mysqli_error($conexion)!="" ) {
 	$r["msg"] = "Registro eliminado con éxito.";
  }
 echo json_encode($r);
-
-
-?>
