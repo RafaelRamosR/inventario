@@ -64,12 +64,9 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
     <table class="table table-striped">
         <thead>
             <tr>
-
                 <th scope="col">Num.</th>
-
                 <th scope="col">Identificación</th>
                 <th scope="col">Nombre completo</th>
-
                 <th scope="col">Municipio</th>
                 <th scope="col">Telefono</th>
                 <th scope="col" style="text-align: center;">Acciones</th>

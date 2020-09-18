@@ -1,11 +1,10 @@
-<div class="container">
+<div class="container card mb-5">
     <div id="div-tabla">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 card-header">
                 <h2 class="float-left">Registro de personas</h2>
                 <div>
                     <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
-
                     <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
                 </div>
             </div>
