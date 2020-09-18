@@ -1,6 +1,6 @@
 <?php
 require_once("conexion.php");
-$id_proveedor = $_GET['id_proveedor'];
+$id_proveedor = $_GET['id'];
 $sql = "SELECT 
                 id_proveedor,
                 nombre,

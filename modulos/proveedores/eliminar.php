@@ -2,7 +2,7 @@
 require_once("conexion.php");
 
 
-@$id_proveedor = $_POST['id_proveedor'];
+@$id_proveedor = $_POST['id'];
 $sql = "DELETE FROM proveedor WHERE id_proveedor='$id_proveedor' ";
 mysqli_query($conexion, $sql);
 
