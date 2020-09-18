@@ -1,111 +1,45 @@
-<?php
-require_once("conexion.php");
-?>
-    <div id="contenedor-listado" class="content mt-3" style="width:900px; margin:auto">
-
-        <div class="card">
-            
-            <div class="card-header">
-                Listado de proveedores
-                <button id="btn-mostrar-filtros" class="btn btn-sm btn-secondary float-right ml-1">Buscar</button>
-
-                <button id="btn-agregar" class="btn btn-sm btn-secondary float-right ml-1">Agregar</button>
-            </div>
-
-            
-            <div id="div-formulario-busqueda" class="card-body d-none">
-
-                <form id="formulario-busqueda">
-
-                    <div class="form-group row">
-                        <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
-                        <div class="col-sm-9">
-                            <select class="form-control " name="nombre">
-                                <option value="">(Seleccionar nombre)</option>
-                                <?php
-                                $sql1 = "SELECT * FROM proveedor ORDER BY nombre";
-                                $rs1 = mysqli_query($conexion, $sql1);
-                                while ($rw1 = mysqli_fetch_assoc($rs1)) {
-
-                                    echo "<option value='$rw1[id_proveedor]'>$rw1[nombre]</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="direccion" class="col-sm-3 col-form-label">Dirección</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="direccion" placeholder="Dirección">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="correo" class="col-sm-3 col-form-label">Correo</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="correo" placeholder="Correo">
-                        </div>
-                    </div>
-                                        
-                    <hr />
-                    <div class="form-group row mb-0">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" id="btn-buscar" class="btn btn-sm btn-secondary">Buscar</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div id="listado">
-                <?php
-                require_once("listado.php");
-                ?>
+<div class="container mb-5">
+    <div id="div-tabla" class="card">
+        <div class="col-12 card-header">
+            <h2 class="float-left">Registro de productos</h2>
+            <div>
+                <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+                <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
             </div>
         </div>
-       
+
+        <div id="listado" style="max-height:500px; overflow-y:auto;">
+
+        </div>
     </div>
 
-
-
-    
-    
-    <div id="contenedor-formulario" class="container mt-5" style="max-width:700px; display:none">
-        <div class="card">
-           
+    <div id="div-formulario" class="container mt-4" style="max-width:700px; display: none">
+        <div class="card mb-5">
             <div class="card-header">
-                <span id="titulo"><strong>Formulario</strong></span>
+                Agregar proveedor
             </div>
 
             <div class="card-body">
-
                 <form id="formulario" method="post" action="?modulo=agregar-persona" autocomplete="off">
                     <h6 class="card-title text-center">REGISTRAR PROVEEDOR</h6>
-              
+
                     <input type="hidden" name="id_proveedor" id="id_proveedor" />
-                    
+
                     <div class="form-group row">
                         <label for="nombre" class="col-sm-3 col-form-label">nombre</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="nombre" name="nombre">
                         </div>
                     </div>
-                    
-                     <div class="form-group row">
-                         <label for="telefono" class="col-sm-3 col-form-label">Telefono</label>
-                         <div class="col-sm-9">
-                             <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">
-                         </div>
-                     </div>
-                    
-                     <div class="form-group row">
+
+                    <div class="form-group row">
+                        <label for="telefono" class="col-sm-3 col-form-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="direccion" class="col-sm-3 col-form-label"><span class="required">*</span>Direccion</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="dir" name="dir" placeholder="Ingrese su Direccion" required>
@@ -120,151 +54,135 @@ require_once("conexion.php");
                     </div>
 
 
-                    </form>
+                </form>
+
+                <div class="form-group row pt-5">
+                    <div id="div-pb" class="col-sm-12 text-center" style="display: none">
+                        <img src="img/pb.gif" />
+                    </div>
+
+                    <div id="div-btn" class="col-sm-12 text-right">
+                        <input type="button" class="btn btn-success" id="btn-agregar" value="Guardar">
+                        <input type="button" class="btn btn-success" id="btn-modificar" value="Modificar">
+                        <input type="button" class="btn btn-secondary" id="btn-regresar" value="Regresar">
+                    </div>
+                </div>
             </div>
-            
-            
-            
-    <!-- LISTA DE BOTONES CON EVENTOS -->        
-            <div class="card-footer text-right">
-                <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
-                <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
-                <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
-            </div>
-            
-<!-- FIN DEL FORMULARIO -->
         </div>
-        
     </div>
-    <br><br><br><br><br>
-        <script type="text/javascript">
-            
-        $("#btn-agregar").click(function() {
-            $("#contenedor-listado").hide();
-            $("#contenedor-formulario").show();
+</div>
 
-            $("#btn-listado").show();
-            $("#btn-modificar").hide();
-            $("#btn-guardar").show();
-            $("#formulario")[0].reset(); //limpiar formulario
-            $("#formulario input, #formulario select").prop("disabled", false);
+<script>
+    var pagina_actual = 1;
 
+    function mover_pagina(pagina) {
+        if (pagina < 1) {
+            return;
+        }
+
+        var cantidad_paginas = parseInt($("#cantidad_paginas").val());
+        if (pagina > cantidad_paginas) {
+            return;
+        }
+        pagina_actual = pagina;
+        cargar_tabla();
+    }
+
+    function cargar_tabla() {
+        var parametros = $("#form-filtros").serialize();
+        parametros = parametros + "&pagina_actual=" + pagina_actual;
+        $("#listado").html('<div class="text-center"><img src="img/pb.gif"/></div>');
+        $("#listado").load("?modulo=proveedores&accion=listar", parametros);
+    }
+
+    function modificar(id) {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
+        $("#btn-agregar").hide();
+        $("#btn-modificar").show();
+
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+
+        var parametros = "id=" + id;
+        $.get("?modulo=proveedores&accion=asignar", parametros, function(respuesta) {
+
+            var r = jQuery.parseJSON(respuesta);
+
+            $("#id_proveedor").val(r.id_proveedor);
+            $("#nombre").val(r.nombre);
+            $("#telefono").val(r.telefono);
+            $("#dir").val(r.dir);
+            $("#correo").val(r.correo);
         });
+    }
 
-        $("#btn-guardar").click(function() {
-            var parametros = $("#formulario").serialize();
-            $.post("?modulo=proveedores&accion=agregar", parametros, function(respuesta) {
-                //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                 r= JSON.parse(respuesta);
-                // console.log(r);
-                 alert(r.msg);
+    function eliminar(id) {
+        if (confirm("¿Realmente desea eliminar el registro?")) {
+            var parametros = "id=" + id;
+            $.post("?modulo=proveedores&accion=eliminar", parametros, function(respuesta) {
+                var r = jQuery.parseJSON(respuesta);
+                alert(r.msg);
                 if (r.error == false) {
-                    $("#contenedor-listado").show();
-                    $("#contenedor-formulario").hide();
-                    cargar_listado();
+                    cargar_tabla()
                 }
-
             });
+        }
+    }
 
-        });
+    cargar_tabla();
 
+    $("#btn-mostrar-formulario-agregar").click(function() {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
 
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+        $("#btn-agregar").show();
+        $("#btn-modificar").hide();
 
-        $("#btn-modificar").click(function() {
-            if (confirm("¿Desea modificar el registro?")) {
-                var parametros = $("#formulario").serialize();
-                $.post("?modulo=proveedores&accion=modificar", parametros, function(respuesta) {
-                    //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                    var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                        $("#contenedor-listado").show();
-                        $("#contenedor-formulario").hide();
-                        cargar_listado();
-                    }
-                });
+    });
+
+    $("#btn-agregar").click(function() {
+        var parametros = $("#formulario").serialize();
+        $.post("?modulo=proveedores&accion=agregar", parametros, function(respuesta) {
+            r = JSON.parse(respuesta);
+            alert(r.msg);
+            if (r.error == false) {
+                $("#div-tabla").show();
+                $("#div-formulario").hide();
+                cargar_tabla();
             }
         });
-            
+    });
 
-        $("#btn-regresar").click(function() {
-            $("#contenedor-listado").show();
-            $("#contenedor-formulario").hide();
-        });
-
-        function mostrar(id_proveedor) {
-            var parametros = "id_proveedor=" + id_proveedor;
-            $.get("?modulo=proveedores&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide(); 
-                $("#btn-modificar").hide();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", true);
-
+    $("#btn-modificar").click(function() {
+        if (confirm("¿Desea modificar el registro?")) {
+            $("#div-pb").show();
+            $("#div-btn").hide();
+            var parametros = $("#formulario").serialize();
+            $.post("?modulo=proveedores&accion=modificar", parametros, function(respuesta) {
+                $("#div-pb").hide();
+                $("#div-btn").show();
                 var r = jQuery.parseJSON(respuesta);
-
-                $("#id_proveedor").val(r.id_proveedor);
-                $("#nombre").val(r.nombre);
-                $("#telefono").val(r.telefono);
-                $("#dir").val(r.dir);
-                $("#correo").val(r.correo);
+                alert(r.msg);
+                if (r.error == false) {
+                    cargar_tabla();
+                    $("#div-tabla").show();
+                    $("#div-formulario").hide();
+                } else {
+                    alert(r.error);
+                }
             });
         }
+    });
 
+    $("#btn-regresar").click(function() {
+        $("#div-tabla").show();
+        $("#div-formulario").hide();
+    });
 
-
-        function eliminar(id_proveedor) {
-            if (confirm("¿Realmente desea eliminar el registro?")) {
-                var parametros = "id_proveedor=" + id_proveedor;
-                $.post("?modulo=proveedores&accion=eliminar", parametros, function(respuesta) {
-                    var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                         cargar_listado()
-                    }
-                });
-            }
-        }
-
-
-        function modificar(id_proveedor) {
-            var parametros = "id_proveedor=" + id_proveedor;
-            $.get("?modulo=proveedores&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide();
-                $("#btn-modificar").show();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", false);
-                $("#identificacion").prop("disabled", true);
-
-                var r = jQuery.parseJSON(respuesta);
-
-                $("#id_proveedor").val(r.id_proveedor);
-                $("#nombre").val(r.nombre);
-                $("#telefono").val(r.telefono);
-                $("#dir").val(r.dir);
-                $("#correo").val(r.correo);
-            });
-        }
-   
-
-        $("#btn-mostrar-filtros").click(function() {
-            $("#div-formulario-busqueda").toggleClass("d-none");
-        });
-
-        $("#btn-buscar").click(function() {
-            cargar_listado();
-        });
-
-        function cargar_listado() {
-            var parametros = $("#formulario-busqueda").serialize() + "&" + 
-            $("#formulario-paginacion").serialize();
-            $("#listado").load("?modulo=proveedores&accion=listar", parametros);
-        }
-    </script>
+    $("#btn-buscar").click(function() {
+        $("#tr-filtros").toggleClass("d-none");
+    });
+</script>

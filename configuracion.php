@@ -526,14 +526,14 @@ $modulos["zona_de_residencia"] = [
 
 $modulos["proveedores"] = [
     "ruta" => "modulos/proveedores/",
-   "verificar_permisos" => true,
+   //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -548,8 +548,8 @@ $modulos["proveedores"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
     ]

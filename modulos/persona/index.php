@@ -277,7 +277,6 @@
             return;
         }
 
-
         pagina_actual = pagina;
         cargar_tabla();
     }
