@@ -298,29 +298,42 @@
         //Limpiar el formulario
         $("#formulario").trigger("reset");
 
-        var p = "id=" + id;
-        $.get("?modulo=persona&accion=asignar", p, function(respuesta) {
+        var parametros = "id=" + id;
+        $.get("?modulo=persona&accion=asignar", parametros, function(respuesta) {
+
             var r = jQuery.parseJSON(respuesta);
-            $("#persona_id").val(r.persona_id);
-            $("#tipo_identificacion_id").val(r.tipo_identificacion_id);
-            $("#identificacion").val(r.identificacion);
-            $("#nombre").val(r.nombre);
-            $("#apellido").val(r.apellido);
+
+            $("#id_persona").val(r.id_persona);
+            $("#id_tipo_de_identificacion").val(r.id_tipo_de_identificacion);
+            $("#sexo").val(r.id_sexo);
+            $("#municipio_expedicion").val(r.id_municipio_expedicion);
+            $("#municipio_nacimiento").val(r.id_municipio_de_nacimiento);
+            $("#estado_civil").val(r.id_estado_civil);
+            $("#municipio_residencia").val(r.id_municipio_de_residencia);
+            $("#zona_residencia").val(r.id_zona_residencia);
+            $("#numero_identificacion").val(r.Num_Identificacion);
+            $("#fecha_expedicion").val(r.fecha_expedicion);
+            $("#primer_nombre").val(r.primer_nombre);
+            $("#segundo_nombre").val(r.segundo_nombre);
+            $("#primer_apellido").val(r.primer_apellido);
+            $("#segundo_apellido").val(r.segundo_apellido);
             $("#fecha_nacimiento").val(r.fecha_nacimiento);
-            $("#municipio_id").val(r.municipio_id);
-            $("#telefono").val(r.telefono);
+            $("#direccion").val(r.direccion);
+            $("#correo_principal").val(r.correo_principal);
+            $("#correo_alternativo").val(r.correo_alternativo);
+            $("#telefono_principal").val(r.telefono_principal);
+            $("#telefono_alternativo").val(r.telefono_alternativo);
+            $("#cargo").val(r.id_cargo);
         });
     }
 
     function eliminar(id) {
-
         if (confirm("¿Desea eliminar el registro?")) {
             var p = "persona_id=" + id;
             $.post("?modulo=persona&accion=eliminar", p, function(respuesta) {
 
                 try {
                     var r = jQuery.parseJSON(respuesta);
-
 
                     if (r.error == true) {
                         $.notify({
@@ -331,8 +344,6 @@
                         });
                     } else {
                         cargar_tabla();
-
-
                         $.notify({
                             message: r.msg
                         }, {
@@ -415,50 +426,19 @@
 
     $("#btn-modificar").click(function() {
         if (confirm("¿Desea modificar el registro?")) {
-            $.notifyClose();
             $("#div-pb").show();
             $("#div-btn").hide();
             var parametros = $("#formulario").serialize();
             $.post("?modulo=persona&accion=modificar", parametros, function(respuesta) {
                 $("#div-pb").hide();
                 $("#div-btn").show();
-
-
-                try {
-                    var r = jQuery.parseJSON(respuesta);
-
-
-                    if (r.error == true) {
-                        $.notify({
-                            message: r.msg
-                        }, {
-                            type: 'danger',
-                            delay: 0
-                        });
-                    } else {
-                        cargar_tabla();
-
-                        $("#div-tabla").show();
-                        $("#div-formulario").hide();
-
-
-                        $.notify({
-                            message: r.msg
-                        }, {
-                            type: 'success',
-                            delay: 0
-                        });
-                    }
-                } catch (error) {
-                    $.notify({
-                        message: error + "<br/></br>" + respuesta
-                    }, {
-                        type: 'danger',
-                        delay: 0
-                    });
+                var r = jQuery.parseJSON(respuesta);
+                alert(r.msg);
+                if (r.error == false) {
+                    cargar_tabla();
+                    $("#div-tabla").show();
+                    $("#div-formulario").hide();
                 }
-
-
             });
         }
     });

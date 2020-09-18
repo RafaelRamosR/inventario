@@ -1,6 +1,6 @@
 <?php
 require_once("conexion.php");
-$id_persona = $_GET['id_persona'];
+$id_persona = $_GET['id'];
 $sql = "SELECT 
                 id_persona,
                 id_tipo_de_identificacion,
