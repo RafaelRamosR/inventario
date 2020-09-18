@@ -309,14 +309,14 @@ $modulos["tipo_identidad"] = [
 
 $modulos["tipo_producto"] = [
     "ruta" => "modulos/tipo_producto/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -331,8 +331,8 @@ $modulos["tipo_producto"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
     ]
