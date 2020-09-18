@@ -85,8 +85,8 @@
 
             var r = jQuery.parseJSON(respuesta);
 
-            $("#id_persona").val(r.id_persona);
-            $("#sexo").val(r.id_sexo);
+            $("#id_estado_civil").val(r.id_estado_civil);
+            $("#estado_civil").val(r.nombre);
         });
     }
 
