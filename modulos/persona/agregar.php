@@ -1,7 +1,214 @@
 <?php
 require_once("conexion.php");
 
-$id_tipo_identificacion2 = $_POST['id_tipo_identificacion2'];
+$resultado = [];
+$error = "";
+
+//VALIDAR TIPO DE IDNTIFICACIÓN//
+if (
+    isset($_POST['tipo_de_identificacion']) == false
+    || $_POST['tipo_de_identificacion'] == ""
+) {
+    $error .= "El tipo de identificación es obligatorio.\n";
+}
+
+//VALIDAR TIPO DE SEXO//
+if (
+    isset($_POST['sexo']) == false
+    || $_POST['sexo'] == ""
+) {
+    $error .= "El tipo de sexo es obligatorio.\n";
+}
+
+//VALIDAR MUNICIPIO DE EXPEDICIÓN//
+if (
+    isset($_POST['municipio_expedicion']) == false
+    || $_POST['municipio_expedicion'] == ""
+) {
+    $error .= "El municipio de expedicion es obligatorio.\n";
+}
+
+//VALIDAR MUNICIPIO DE NACIMIENTO//
+if (
+    isset($_POST['municipio_nacimiento']) == false
+    || $_POST['municipio_nacimiento'] == ""
+) {
+    $error .= "El municipio de nacimiento es obligatorio.\n";
+}
+
+//VALIDAR TIPO DE ESTADO CIVIL//
+if (
+    isset($_POST['estado_civil']) == false
+    || $_POST['estado_civil'] == ""
+) {
+    $error .= "El estado civil es obligatorio.\n";
+}
+
+if (
+    isset($_POST['cargo']) == false
+    || $_POST['cargo'] == ""
+) {
+    $error .= "El cargo es obligatorio.\n";
+}
+
+//VALIDAR MUNICIPIO DE RESIDENCIA//
+if (
+    isset($_POST['municipio_residencia']) == false
+    || $_POST['municipio_residencia'] == ""
+) {
+    $error .= "El municipio de residencia es obligatorio.\n";
+}
+
+//VALIDAR ZONA DE RESIDENCIA//
+if (
+    isset($_POST['zona_residencia']) == false
+    || $_POST['zona_residencia'] == ""
+) {
+    $error .= "La zona de residencia es obligatoria.\n";
+}
+
+//VALIDAR NÚMERO DE IDNTIFICACIÓN//
+if (
+    isset($_POST['numero_identificacion']) == false
+    || $_POST['numero_identificacion'] == ""
+) {
+    $error .= "El número de identificación es obligatorio.\n";
+} else {
+    $opciones = ["options" => ["regexp" => '/^[0-9]*$/']];
+    if (filter_var($_POST['numero_identificacion'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "El número de identificación solo debe tener números.\n";
+    }
+}
+//VALIDAR FECHA DE EXPEDICIÓN//
+if (
+    isset($_POST['fecha_expedicion']) == false
+    || $_POST['fecha_expedicion'] == ""
+) {
+    $error .= "Fecha de expedicion es obligatoria.\n";
+} else {
+    $opciones = ["options" => ["regexp" => '/^(\d{4})(\/|-)(0[1-9]|1[0-2])\2([0-2][0-9]|3[0-1])$/']];
+    if (filter_var($_POST['fecha_expedicion'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "La fecha de expedicion no cumple los requisitos.\n";
+    }
+}
+
+//VALIDAR PRIMER NOMBRE//
+if (
+    isset($_POST['primer_nombre']) == false
+    || $_POST['primer_nombre'] == ""
+) {
+    $error .= "Primer nombre es obligatorio.\n";
+} else {
+    $opciones = ["options" => ["regexp" => '/^[a-z|A-Z]*$/']];
+    if (filter_var($_POST['primer_nombre'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "Primer nombre solo debe tener letras.\n";
+    }
+}
+//VALIDAR SEGUNDO NOMBRE//
+if (
+    isset($_POST['segundo_nombre']) == true
+    && $_POST['segundo_nombre'] !== ""
+) {
+    $opciones = ["options" => ["regexp" => '/^[a-z|A-Z]*$/']];
+if (filter_var($_POST['segundo_nombre'], FILTER_VALIDATE_REGEXP, $opciones) === false
+) {
+        $error .= "Segundo nombre solo debe tener letras.\n";
+  }
+}
+//VALIDAR PRIMER APELLIDO//
+if (
+    isset($_POST['primer_apellido']) == false
+    || $_POST['primer_apellido'] == ""
+) {
+    $error .= "Primer apellido es obligatorio.\n";
+} else {
+    $opciones = ["options" => ["regexp" => '/^[a-z|A-Z]*$/']];
+    if (filter_var($_POST['primer_apellido'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "Primer apellido solo debe tener letras.\n";
+    }
+}
+//VALIDAR SEGUNDO APELLIDO//
+if (
+    isset($_POST['segundo_apellido']) == true
+    && $_POST['segundo_apellido'] !== ""
+) {
+    $opciones = ["options" => ["regexp" => '/^[a-z|A-Z]*$/']];
+if (filter_var($_POST['segundo_apellido'], FILTER_VALIDATE_REGEXP, $opciones) === false
+) {
+        $error .= "Segundo apellido solo debe tener letras.\n";
+  }
+}
+//VALIDAR FECHA DE NACIMIENTO//
+if (
+    isset($_POST['fecha_nacimiento']) == false
+    || $_POST['fecha_nacimiento'] == ""
+) {
+    $error .= "Fecha de nacimiento es obligatoria.\n";
+} else {
+    $opciones = ["options" => ["regexp" => '/^(\d{4})(\/|-)(0[1-9]|1[0-2])\2([0-2][0-9]|3[0-1])$/']];
+    if (filter_var($_POST['fecha_nacimiento'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "La fecha de nacimiento no cumple los requisitos.\n";
+    }
+}
+
+//VALIDAR MUNICIPIO DE NACIMIENTO//
+if (
+    isset($_POST['direccion']) == false
+    || $_POST['direccion'] == ""
+) {
+    $error .= "La dirección es obligatoria.\n";
+}
+
+//VALIDAR CORREOS//
+if (
+    isset($_POST['correo_principal']) == false
+    || $_POST['correo_principal'] == ""
+) {
+    $error .= "El correo principal es obligatorio.\n";
+}else {
+    if (!filter_var($_POST['correo_principal'], FILTER_VALIDATE_EMAIL) === true) {
+        $error .= "El correo principal debe ser un correo valido.\n";
+    }
+}
+
+if ($_POST['correo_alternativo'] != "" && !filter_var($_POST['correo_alternativo'], FILTER_VALIDATE_EMAIL) === true) {
+        $error .= "El correo alternativo debe ser un correo valido.\n";
+    }
+
+//VALIDAR TELEFONOS//
+if (
+    isset($_POST['telefono_principal']) == false
+    || $_POST['telefono_principal'] == ""
+) {
+    $error .= "El telefono es obligatorio.\n";
+}else {
+    $opciones = ["options" => ["regexp" => '/^[0-9]*$/']];
+    if (filter_var($_POST['telefono_principal'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "El telefono solo debe tener números.\n";
+    }
+}
+
+if (
+    isset($_POST['telefono_lternativo']) == true
+    && $_POST['telefono_lternativo'] == ""
+) {
+    $error .= "El telefono alternativo es obligatorio.\n";
+}else {
+    $opciones = ["options" => ["regexp" => '/^[0-9]*$/']];
+    if ($_POST['telefono_alternativo'] != "" && filter_var($_POST['telefono_alternativo'], FILTER_VALIDATE_REGEXP, $opciones) === false) {
+        $error .= "El telefono alternativo solo debe tener números.\n";
+    }
+}
+
+
+ if ($error != "") {
+     $resultado['error'] = true;
+     $resultado['msg'] = $error;
+     echo json_encode($resultado);
+     exit(0);
+ }
+
+$tipo_identificacion = $_POST['tipo_de_identificacion'];
 $sexo = $_POST['sexo'];
 $municipio_expedicion = $_POST['municipio_expedicion'];
 $municipio_de_nacimiento = $_POST['municipio_nacimiento'];
@@ -22,89 +229,49 @@ $telefono_principal = $_POST['telefono_principal'];
 $telefono_alternativo = $_POST['telefono_alternativo'];
 $cargo = $_POST['cargo'];
 
-$errores = "";
-$respuesta = [];
-
-if($tid_tipo_identificacion2=="") {
-    $errores .="<li>El campo 'Tipo identificación' es obligatorio</li>";
-}
-
-if($identificacion=="") {
-    $errores .="<li>El campo 'Identificación' es obligatorio</li>";
-}
-
-if($nombre=="") {
-    $errores .="<li>El campo 'Nombre' es obligatorio</li>";
-}
-
-if($apellido=="") {
-    $errores .="<li>El campo 'Apellido' es obligatorio</li>";
-}
-
-if($fecha_nacimiento=="") {
-    $errores .="<li>El campo 'fecha de nacimiento' es obligatorio</li>";
-}
-
-if($municipio_id=="") {
-    $errores .="<li>El campo 'Municipio' es obligatorio</li>";
-}
-
-if($telefono=="") {
-    $errores .="<li>El campo 'Telefono' es obligatorio</li>";
-}
-
-
-if ($errores != "") {
-    $respuesta['error'] = true;
-    $respuesta['msg'] = $errores;
-    echo json_encode($respuesta);
-    exit(0);
-}
-
 $sql="INSERT INTO persona (
-							id_tipo_de_identificacion, 
-                id_sexo, 
-                id_municipio_expedicion,
-                id_municipio_de_nacimiento, 
-                id_estado_civil,
-                id_municipio_de_residencia,
-                id_zona_residencia,
-                Num_Identificacion,
-                fecha_expedicion,
-                primer_nombre,
-                segundo_nombre,
-                primer_apellido,
-                segundo_apellido,
-                fecha_nacimiento,
-                direccion,
-                correo_principal,
-                correo_alternativo,
-                telefono_principal, 
-                telefono_alternativo,
-				id_cargo)
-							VALUES(
-
-                    '$tipo_identificacion', 
-                    '$sexo', 
-                    '$municipio_expedicion',
-                    '$municipio_de_nacimiento', 
-                    '$estado_civil', 
-                    '$municipio_de_residencia',
-                    '$zona_de_residencia',
-                    '$numero_identificacion',
-                    '$fecha_expedicion', 
-                    '$primer_nombre',
-                    '$segundo_nombre',
-                    '$primer_apellido',
-                    '$segundo_apellido',
-                    '$fecha_nacimiento',
-                    '$direccion', 
-                    '$correo_principal',
-                    '$correo_alternativo',
-                    '$telefono_principal',
-                    '$telefono_alternativo',
-					'$cargo'
-						)";
+	id_tipo_de_identificacion, 
+    id_sexo, 
+    id_municipio_expedicion,
+    id_municipio_de_nacimiento, 
+    id_estado_civil,
+    id_municipio_de_residencia,
+    id_zona_residencia,
+    Num_Identificacion,
+    fecha_expedicion,
+    primer_nombre,
+    segundo_nombre,
+    primer_apellido,
+    segundo_apellido,
+    fecha_nacimiento,
+    direccion,
+    correo_principal,
+    correo_alternativo,
+    telefono_principal, 
+    telefono_alternativo,
+    id_cargo
+        ) VALUES(
+    '$tipo_identificacion', 
+    '$sexo', 
+    '$municipio_expedicion',
+    '$municipio_de_nacimiento', 
+    '$estado_civil', 
+    '$municipio_de_residencia',
+    '$zona_de_residencia',
+    '$numero_identificacion',
+    '$fecha_expedicion', 
+    '$primer_nombre',
+    '$segundo_nombre',
+    '$primer_apellido',
+    '$segundo_apellido',
+    '$fecha_nacimiento',
+    '$direccion', 
+    '$correo_principal',
+    '$correo_alternativo',
+    '$telefono_principal',
+    '$telefono_alternativo',
+    '$cargo'
+)";
 
 mysqli_query($conexion, $sql);
 
@@ -116,4 +283,3 @@ if (mysqli_error($conexion) == "") {
     $resultado["msg"] = mysqli_error($conexion);
 }
 echo json_encode($resultado);
-?>
