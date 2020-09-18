@@ -2,16 +2,28 @@
 
 $filtros = "";
 
-if (isset($_GET['nombre_producto']) == true &&  $_GET['nombre_producto']  != "") {
-    $filtros .= " AND p.id_producto = '$_GET[nombre_producto]' ";
+if (isset($_GET['nombre_producto']) &&  $_GET['nombre_producto'] != "") {
+    $nombre = $_GET['nombre_producto'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  p.nombre LIKE '%$nombre%'";
 }
 
-if (isset($_GET['tipo_producto']) == true &&  $_GET['tipo_producto']  != "") {
-    $filtros .= " AND p.id_tipo_producto = '$_GET[tipo_producto]' ";
+if (isset($_GET['tipo_producto']) &&  $_GET['tipo_producto'] != "") {
+    $nombre = $_GET['tipo_producto'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  tp.nombre LIKE '%$nombre%'";
 }
 
 if (isset($_GET['modelo']) == true &&  $_GET['modelo']  != "") {
-    $filtros .= " AND p.modelo = '$_GET[modelo]' ";
+    $nombre = $_GET['modelo'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  p.modelo LIKE '%$nombre%'";
+}
+
+if (isset($_GET['stock']) == true &&  $_GET['stock']  != "") {
+    $nombre = $_GET['stock'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  p.stock LIKE '%$nombre%'";
 }
 
 if (isset($_GET['fecha_adquisicion']) == true &&  $_GET['fecha_adquisicion']  != "") {
@@ -19,30 +31,32 @@ if (isset($_GET['fecha_adquisicion']) == true &&  $_GET['fecha_adquisicion']  !=
 }
 
 if (isset($_GET['proveedor']) == true &&  $_GET['proveedor']  != "") {
-    $filtros .= " AND p.id_provedore = '$_GET[proveedor]' ";
+    $nombre = $_GET['proveedor'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  pr.nombre LIKE '%$nombre%'";
 }
 
 if (isset($_GET['referencia']) == true &&  $_GET['referencia']  != "") {
-    $filtros .= " AND p.referencia = '$_GET[referencia]' ";
+    $nombre = $_GET['referencia'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= "  AND  p.referencia LIKE '%$nombre%'";
 }
 
 $sql_base = "SELECT           
-            p.id_producto,
-            p.nombre AS nombre_producto,
-            tp.nombre AS nombre_tipo,
-            p.modelo,
-            p.stock,
-            p.fecha_adquisicion,
-            pr.nombre AS proveedor,
-            p.referencia
-        FROM
-            producto p
-        INNER JOIN
-            tipo_producto tp ON p.id_tipo_producto = tp.id_tipo_producto
-        INNER JOIN
-            proveedores pr ON p.id_provedore = pr.id_proveedor
-        WHERE TRUE $filtros
-                ";
+    p.id_producto,
+    p.nombre AS nombre_producto,
+    tp.nombre AS nombre_tipo,
+    p.modelo,
+    p.stock,
+    p.fecha_adquisicion,
+    pr.nombre AS proveedor,
+    p.referencia
+    FROM producto p
+    INNER JOIN tipo_producto tp ON p.id_tipo_producto = tp.id_tipo_producto
+    INNER JOIN proveedores pr ON p.id_provedore = pr.id_proveedor
+    WHERE TRUE $filtros
+";
+
 //Paginación
 $num_reg_paginas = 5;
 $pagina_actual = $_GET['pagina_actual'];
@@ -72,22 +86,25 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
                 <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="identifica" class="form-control form-control-sm" value="<?php echo isset($_GET['identifica']) ? $_GET['identifica'] : ""  ?>" />
+                    <input type="text" name="nombre_producto" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre_producto']) ? $_GET['nombre_producto'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
+                    <input type="text" name="tipo_producto" class="form-control form-control-sm" value="<?php echo isset($_GET['tipo_producto']) ? $_GET['tipo_producto'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="date" name="fecha" class="form-control form-control-sm" value="<?php echo isset($_GET['fecha_nacimiento']) ? $_GET['fecha_nacimiento'] : ""  ?>" />
+                    <input type="text" name="modelo" class="form-control form-control-sm" value="<?php echo isset($_GET['modelo']) ? $_GET['modelo'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="municipio" class="form-control form-control-sm" value="<?php echo isset($_GET['municipio']) ? $_GET['municipio'] : ""  ?>" />
+                    <input type="text" name="stock" class="form-control form-control-sm" value="<?php echo isset($_GET['stock']) ? $_GET['stock'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="telefono" class="form-control form-control-sm" value="<?php echo isset($_GET['telefono']) ? $_GET['telefono'] : ""  ?>" />
+                    <input type="date" name="fecha_adquisicion" class="form-control form-control-sm" value="<?php echo isset($_GET['fecha_adquisicion']) ? $_GET['fecha_adquisicion'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="telefono_alt" class="form-control form-control-sm" value="<?php echo isset($_GET['telefono_alt']) ? $_GET['telefono_alt'] : ""  ?>" />
+                    <input type="text" name="proveedor" class="form-control form-control-sm" value="<?php echo isset($_GET['proveedor']) ? $_GET['proveedor'] : ""  ?>" />
+                </th>
+                <th scope="col">
+                    <input type="text" name="referencia" class="form-control form-control-sm" value="<?php echo isset($_GET['referencia']) ? $_GET['referencia'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
