@@ -24,15 +24,10 @@ require_once("header.php");
 </head>
 
 <body id="body">
-
-    <div class="row" style="border:1px solid silver; padding: 5px;">
-        <ul class="nav">
-            <li class="nav-item">
-                <?php
-                require_once("menu.php");
-                ?>
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <?php
+            require_once("menu.php");
+        ?>
     </div>
 
 
