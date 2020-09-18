@@ -328,36 +328,13 @@
     }
 
     function eliminar(id) {
-        if (confirm("¿Desea eliminar el registro?")) {
-            var p = "persona_id=" + id;
-            $.post("?modulo=persona&accion=eliminar", p, function(respuesta) {
-
-                try {
-                    var r = jQuery.parseJSON(respuesta);
-
-                    if (r.error == true) {
-                        $.notify({
-                            message: r.msg
-                        }, {
-                            type: 'danger',
-                            delay: 0
-                        });
-                    } else {
-                        cargar_tabla();
-                        $.notify({
-                            message: r.msg
-                        }, {
-                            type: 'success',
-                            delay: 0
-                        });
-                    }
-                } catch (error) {
-                    $.notify({
-                        message: error + "<br/></br>" + respuesta
-                    }, {
-                        type: 'danger',
-                        delay: 0
-                    });
+        if (confirm("¿Realmente desea eliminar el registro?")) {
+            var parametros = "id=" + id;
+            $.post("?modulo=persona&accion=eliminar", parametros, function(respuesta) {
+                var r = jQuery.parseJSON(respuesta);
+                alert(r.msg);
+                if (r.error == false) {
+                    cargar_tabla()
                 }
             });
         }

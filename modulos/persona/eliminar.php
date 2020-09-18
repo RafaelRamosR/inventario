@@ -2,7 +2,7 @@
 require_once("conexion.php");
 
 
-@$id = $_POST['id_persona'];
+@$id = $_POST['id'];
 $sql = "DELETE FROM persona WHERE id_persona='$id' ";
 mysqli_query($conexion, $sql);
 
