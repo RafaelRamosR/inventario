@@ -141,27 +141,14 @@
 
             var r = jQuery.parseJSON(respuesta);
 
-            $("#id_persona").val(r.id_persona);
-            $("#id_tipo_de_identificacion").val(r.id_tipo_de_identificacion);
-            $("#sexo").val(r.id_sexo);
-            $("#municipio_expedicion").val(r.id_municipio_expedicion);
-            $("#municipio_nacimiento").val(r.id_municipio_de_nacimiento);
-            $("#estado_civil").val(r.id_estado_civil);
-            $("#municipio_residencia").val(r.id_municipio_de_residencia);
-            $("#zona_residencia").val(r.id_zona_residencia);
-            $("#numero_identificacion").val(r.Num_Identificacion);
-            $("#fecha_expedicion").val(r.fecha_expedicion);
-            $("#primer_nombre").val(r.primer_nombre);
-            $("#segundo_nombre").val(r.segundo_nombre);
-            $("#primer_apellido").val(r.primer_apellido);
-            $("#segundo_apellido").val(r.segundo_apellido);
-            $("#fecha_nacimiento").val(r.fecha_nacimiento);
-            $("#direccion").val(r.direccion);
-            $("#correo_principal").val(r.correo_principal);
-            $("#correo_alternativo").val(r.correo_alternativo);
-            $("#telefono_principal").val(r.telefono_principal);
-            $("#telefono_alternativo").val(r.telefono_alternativo);
-            $("#cargo").val(r.id_cargo);
+            $("#id_producto").val(r.id_producto);
+            $("#nombre_producto").val(r.nombre);
+            $("#tipo_producto").val(r.id_tipo_producto);
+            $("#modelo_producto").val(r.modelo);
+            $("#stock").val(r.stock);
+            $("#fecha_adquisicion").val(r.fecha_adquisicion);
+            $("#proveedores").val(r.id_provedore);
+            $("#referencia").val(r.referencia);
         });
     }
 

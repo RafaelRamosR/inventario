@@ -126,7 +126,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
         </tbody>
         <tfoot>
             <tr>
-                <td class="card-footer text-center" colspan="8">
+                <td class="card-footer text-center" colspan="9">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('1')">
                             <i class="fas fa-angle-double-left"></i>

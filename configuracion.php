@@ -154,7 +154,7 @@ $modulos["persona"] = [
 
 $modulos["producto"] = [
     "ruta" => "modulos/producto/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
