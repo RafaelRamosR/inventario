@@ -278,14 +278,14 @@ $modulos["sexo"] = [
 
 $modulos["tipo_identidad"] = [
     "ruta" => "modulos/tipo_identidad/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -300,8 +300,8 @@ $modulos["tipo_identidad"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
     ]
