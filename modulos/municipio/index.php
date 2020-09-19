@@ -1,74 +1,32 @@
-<?php
-require_once("conexion.php");
-?>
-    <div id="contenedor-listado" class="content mt-3" style="width:900px; margin:auto">
-
-        <div class="card">
-            
-            <div class="card-header">
-                Listado de municipios
-                <button id="btn-mostrar-filtros" class="btn btn-sm btn-secondary float-right ml-1">Buscar</button>
-
-                <button id="btn-agregar" class="btn btn-sm btn-secondary float-right ml-1">Agregar</button>
-            </div>
-
-            
-            <div id="div-formulario-busqueda" class="card-body d-none">
-
-                <form id="formulario-busqueda">
-                
-                    <div class="form-group row">
-                        <label for="municipio" class="col-sm-3 col-form-label">Municipio</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="municipio" placeholder="Municipio">
-                        </div>
-                    </div>
-                    
-
-                    <hr />
-                    <div class="form-group row mb-0">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" id="btn-buscar" class="btn btn-sm btn-secondary">Buscar</button>
-                        </div>
-                    </div>
-                </form>
-
-            
-
-
-
-
-            </div>
-            <div id="listado">
-                <?php
-                require_once("listado.php");
-                ?>
+<div class="container mb-5">
+    <div id="div-tabla" class="card">
+        <div class="col-12 card-header">
+            <h2 class="float-left">Registro de municipios</h2>
+            <div>
+                <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+                <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=municipio&accion=reporte" role="button">Reporte</a>
+                <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
             </div>
         </div>
-       
+
+        <div id="listado" style="max-height:500px; overflow-y:auto;">
+
+        </div>
     </div>
 
-
-
-    
-    
-    <div id="contenedor-formulario" class="container mt-5" style="max-width:700px; display:none">
-        <div class="card">
-           
-        <div class="card-header">
-                <span id="titulo"><strong>municipio</strong></span>
+    <div id="div-formulario" class="container mt-4" style="max-width:700px; display: none">
+        <div class="card mb-5">
+            <div class="card-header">
+                Agregar municipio
             </div>
 
             <div class="card-body">
-
                 <form id="formulario" autocomplete="off">
                     <h6 class="card-title text-center">Municipio</h6>
-              
                     <input type="hidden" name="id" id="id" />
-
                     <div class="form-group row">
-                        <label for="departamento" class="col-sm-3 col-form-label">Departamento</label>
-                        <div class="col-sm-9">
+                        <label for="departamento" class="col-sm-4 col-form-label">Departamento</label>
+                        <div class="col-sm-8">
                             <select class="form-control " id="departamento" name="departamento">
                                 <option value=""></option>
                                 <?php
@@ -82,162 +40,140 @@ require_once("conexion.php");
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="nombre" class="col-sm-3 col-form-label">nombre</label>
-                        <div class="col-sm-9">
+                        <label for="nombre" class="col-sm-4 col-form-label">nombre</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="nombre" name="nombre">
                         </div>
                     </div>
+                </form>
 
+                <div class="form-group row pt-5">
+                    <div id="div-pb" class="col-sm-12 text-center" style="display: none">
+                        <img src="img/pb.gif" />
+                    </div>
 
-                   
-                    </form>
+                    <div id="div-btn" class="col-sm-12 text-right">
+                        <input type="button" class="btn btn-success" id="btn-agregar" value="Guardar">
+                        <input type="button" class="btn btn-success" id="btn-modificar" value="Modificar">
+                        <input type="button" class="btn btn-secondary" id="btn-regresar" value="Regresar">
+                    </div>
+                </div>
             </div>
-            
-            
-            
-    <!-- LISTA DE BOTONES CON EVENTOS -->        
-            <div class="card-footer text-right">
-                <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
-                <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
-                <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
-            </div>
-            
-<!-- FIN DEL FORMULARIO -->
         </div>
-        
     </div>
-    <br><br><br><br><br>
-        <script type="text/javascript">
-            
-        $("#btn-agregar").click(function() {
-            $("#contenedor-listado").hide();
-            $("#contenedor-formulario").show();
+</div>
 
-            $("#btn-listado").show();
-            $("#btn-modificar").hide();
-            $("#btn-guardar").show();
-            $("#formulario")[0].reset(); //limpiar formulario
-            $("#formulario input, #formulario select").prop("disabled", false);
+<script>
+    var pagina_actual = 1;
 
+    function mover_pagina(pagina) {
+        if (pagina < 1) {
+            return;
+        }
+
+        var cantidad_paginas = parseInt($("#cantidad_paginas").val());
+        if (pagina > cantidad_paginas) {
+            return;
+        }
+
+        pagina_actual = pagina;
+        cargar_tabla();
+    }
+
+    function cargar_tabla() {
+        var parametros = $("#form-filtros").serialize();
+        parametros = parametros + "&pagina_actual=" + pagina_actual;
+        $("#listado").html('<div class="text-center"><img src="img/pb.gif"/></div>');
+        $("#listado").load("?modulo=municipio&accion=listar", parametros);
+    }
+
+    function modificar(id) {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
+        $("#btn-agregar").hide();
+        $("#btn-modificar").show();
+
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+
+        var parametros = "id=" + id;
+        $.get("?modulo=municipio&accion=asignar", parametros, function(respuesta) {
+
+            var r = jQuery.parseJSON(respuesta);
+
+            $("#id").val(r.id);
+            $("#departamento").val(r.departamento);
+            $("#nombre").val(r.nombre);
         });
+    }
 
-        $("#btn-guardar").click(function() {
-            var parametros = $("#formulario").serialize();
-            $.post("?modulo=municipio&accion=agregar", parametros, function(respuesta) {
-                //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                 r= JSON.parse(respuesta);
-                // console.log(r);
-                 alert(r.msg);
+    function eliminar(id) {
+        if (confirm("¿Realmente desea eliminar el registro?")) {
+            var parametros = "id=" + id;
+            $.post("?modulo=municipio&accion=eliminar", parametros, function(respuesta) {
+                var r = jQuery.parseJSON(respuesta);
+                alert(r.msg);
                 if (r.error == false) {
-                    $("#contenedor-listado").show();
-                    $("#contenedor-formulario").hide();
-
-                      cargar_listado();
+                    cargar_tabla()
                 }
-
             });
+        }
+    }
 
-        });
+    cargar_tabla();
 
+    $("#btn-mostrar-formulario-agregar").click(function() {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
 
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+        $("#btn-agregar").show();
+        $("#btn-modificar").hide();
 
-        $("#btn-modificar").click(function() {
-            if (confirm("¿Desea modificar el registro?")) {
-                var parametros = $("#formulario").serialize();
-                $.post("?modulo=municipio&accion=modificar", parametros, function(respuesta) {
-                    //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                    var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                        $("#contenedor-listado").show();
-                        $("#contenedor-formulario").hide();
-                        cargar_listado();
-                    }
-                });
+    });
+
+    $("#btn-agregar").click(function() {
+        var parametros = $("#formulario").serialize();
+        $.post("?modulo=municipio&accion=agregar", parametros, function(respuesta) {
+            r = JSON.parse(respuesta);
+            alert(r.msg);
+            if (r.error == false) {
+                $("#div-tabla").show();
+                $("#div-formulario").hide();
+                cargar_tabla();
             }
         });
-            
+    });
 
-        $("#btn-regresar").click(function() {
-            $("#contenedor-listado").show();
-            $("#contenedor-formulario").hide();
-        });
-
-        function mostrar(id) {
-            var parametros = "id=" + id;
-            $.get("?modulo=municipio&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide(); 
-                $("#btn-modificar").hide();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", true);
-
+    $("#btn-modificar").click(function() {
+        if (confirm("¿Desea modificar el registro?")) {
+            $("#div-pb").show();
+            $("#div-btn").hide();
+            var parametros = $("#formulario").serialize();
+            $.post("?modulo=municipio&accion=modificar", parametros, function(respuesta) {
+                $("#div-pb").hide();
+                $("#div-btn").show();
                 var r = jQuery.parseJSON(respuesta);
-
-                $("#departamento").val(r.departamento);
-                $("#nombre").val(r.nombre);
-                
-              
-
+                alert(r.msg);
+                if (r.error == false) {
+                    cargar_tabla();
+                    $("#div-tabla").show();
+                    $("#div-formulario").hide();
+                } else {
+                    alert(r.error);
+                }
             });
         }
+    });
 
+    $("#btn-regresar").click(function() {
+        $("#div-tabla").show();
+        $("#div-formulario").hide();
+    });
 
-
-        function eliminar(id) {
-            if (confirm("¿Realmente desea eliminar el registro?")) {
-                var parametros = "id=" + id;
-                $.post("?modulo=municipio&accion=eliminar", parametros, function(respuesta) {
-                    var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                         cargar_listado();
-                    }
-                });
-            }
-        }
-
-
-        function modificar(id) {
-            var parametros = "id=" + id;
-            $.get("?modulo=municipio&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide();
-                $("#btn-modificar").show();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", false);
-                $("#identificacion").prop("disabled", true);
-
-
-                var r = jQuery.parseJSON(respuesta);
-
-                $("#id").val(r.id);
-                $("#departamento").val(r.departamento);
-                $("#nombre").val(r.nombre);
-                
-            });
-        }
-   
-
-        $("#btn-mostrar-filtros").click(function() {
-            $("#div-formulario-busqueda").toggleClass("d-none");
-        });
-
-        $("#btn-buscar").click(function() {
-            cargar_listado();
-        });
-
-     function cargar_listado() {
-         var parametros = $("#formulario-busqueda").serialize() + "&" +
-             $("#formulario-paginacion").serialize();
-         $("#listado").load("?modulo=municipio&accion=listar", parametros);
-     }
-    </script>
+    $("#btn-buscar").click(function() {
+        $("#tr-filtros").toggleClass("d-none");
+    });
+</script>

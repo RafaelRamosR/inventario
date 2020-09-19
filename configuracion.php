@@ -495,7 +495,7 @@ $modulos["municipio"] = [
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -510,10 +510,18 @@ $modulos["municipio"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
