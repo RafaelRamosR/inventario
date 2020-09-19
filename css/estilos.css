@@ -6,6 +6,13 @@
     text-align: center;
 }
 
+.header {
+    background-color: #AFEBAB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     cursor: auto !important;
 }
@@ -139,7 +146,7 @@ display: inline-block;
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800');
 body {
     color: #606060;
-     font-size: 20px;
+    font-size: 1em;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

@@ -1,16 +1,9 @@
-<?php
-require_once("conexion.php");
-require_once("header.php");
-
-?>
 <!doctype html>
 <html lang="es">
 
 <head>
     <meta charset="utf-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="css/bootstrapp.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/all.css" />
@@ -24,17 +17,12 @@ require_once("header.php");
 </head>
 
 <body id="body">
-    <div class="container-fluid">
-        <?php
-            require_once("menu.php");
-        ?>
-    </div>
-
-
+    <?php
+    require_once("header.php");
+    require_once("menu.php");
+    ?>
     <div class="container">
-
         <div class="row">
-
             <div class="col-md-12">
                 <?php
                 if ($mod_permitir_acceso == true) {
@@ -54,7 +42,6 @@ require_once("header.php");
                 <?php
                 }
                 ?>
-
             </div>
         </div>
     </div>
@@ -62,7 +49,6 @@ require_once("header.php");
     <?php
     include("pie.php");
     ?>
-
 </body>
 <script src="js/all.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>

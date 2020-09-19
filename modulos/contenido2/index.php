@@ -1,6 +1,4 @@
- <script src="lib/tinymce/tinymce.min.js"></script>
-
-
+ <script src="js/tinymce/tinymce.min.js"></script>
  <div class="container">
      <div id="div-tabla" class="card">
          <div class="card-header">
@@ -8,27 +6,19 @@
                  <h2 class="float-left">Registro de contenidos</h2>
                  <div>
                      <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
-
                      <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
                  </div>
              </div>
          </div>
-
-         <div id="listado" style="max-heightx: 500px; overflow-y:auto;">
-
-         </div>
+         <div id="listado" style="max-height: 500px; overflow-y:auto;"></div>
      </div>
 
      <div id="div-formulario" class="container mt-4" style="  display: none">
          <div class="card">
-             <div class="card-header">
-                 Agregar contenido
-             </div>
-
+             <div class="card-header">Agregar contenido</div>
              <div class="card-body">
                  <form id="formulario" method="post">
                      <input type="hidden" name="contenido_id" id="contenido_id" />
-
                      <div class="form-group row">
                          <label for="titulo" class="col-sm-3 col-form-label">Titulo</label>
                          <div class="col-sm-9">
@@ -41,11 +31,6 @@
                              <input type="text" class="form-control" id="modulo" name="modulo" placeholder="Modulo">
                          </div>
                      </div>
-                     <!-- 
-                      <div class="form-group row">
-                          <label for="contenido" class="col-sm-12 col-form-label">Contenido</label>
-
-                      </div> -->
                      <div class="form-group row">
                          <div class="col-sm-12">
                              <textarea disabled type="text" class="form-control" id="contenido" name="contenido" placeholder="Contenido" rows="20"></textarea>
@@ -65,14 +50,9 @@
                          <input type="button" class="btn btn-secondary" id="btn-regresar" value="Regresar">
                      </div>
                  </div>
-
-
-
              </div>
          </div>
      </div>
-
-
  </div>
 
 
@@ -80,26 +60,16 @@
      tinymce.init({
          selector: 'textarea'
      });
- </script>
-
-
- </script>
-
-
- <script>
      var pagina_actual = 1;
 
      function mover_pagina(pagina) {
          if (pagina < 1) {
              return;
          }
-
          var cantidad_paginas = parseInt($("#cantidad_paginas").val());
          if (pagina > cantidad_paginas) {
              return;
          }
-
-
          pagina_actual = pagina;
          cargar_tabla();
      }
