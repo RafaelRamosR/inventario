@@ -568,6 +568,14 @@ $modulos["zona_de_residencia"] = [
             "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
