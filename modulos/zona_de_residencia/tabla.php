@@ -1,7 +1,7 @@
 <?php
 $filtros = "";
 
-if (isset($_GET['nombre']) == true &&                     $_GET['nombre']  != "") {
+if (isset($_GET['nombre']) == true && $_GET['nombre']  != "") {
     $nombre = $_GET['nombre'];
     $nombre = str_replace(" ", "%", $nombre);
     $filtros .= " AND nombre LIKE '%$nombre%' ";

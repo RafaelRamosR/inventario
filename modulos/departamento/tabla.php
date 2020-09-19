@@ -7,16 +7,14 @@ if (isset($_GET['departamento']) == true &&  $_GET['departamento']  != "") {
     $filtros .= " AND e.nombre LIKE '%$departamento%' ";
 }
 
-$sql_base = "SELECT         
-                e.id,
-                e.nombre
-
-        FROM
-            departamento e
-
-        WHERE TRUE $filtros
+$sql_base = "SELECT
+    e.id,
+    e.nombre
+    FROM departamento e
+    WHERE TRUE $filtros
     ORDER BY nombre
-                ";
+";
+
 //Paginación
 $num_reg_paginas = 5;
 $pagina_actual = $_GET['pagina_actual'];
@@ -33,7 +31,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
         <thead>
             <tr>
                 <th>No</th>
-                <th>Departamento </th>
+                <th>Departamento</th>
                 <th>Acciones</th>
             </tr>
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
@@ -70,41 +68,41 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             }
             ?>
         </tbody>
-            <tfoot>
-                <tr>
-                    <td class="card-footer text-center" colspan="8">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('1')">
-                                <i class="fas fa-angle-double-left"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $pagina_actual - 1 ?>')">
-                                <i class="fas fa-angle-left"></i>
-                            </button>
+        <tfoot>
+            <tr>
+                <td class="card-footer text-center" colspan="8">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('1')">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $pagina_actual - 1 ?>')">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
 
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm">
-                                <input class="utch" type="text" id="pagina_actual" value="<?php echo $pagina_actual ?>" onchange="mover_pagina(this.value)">
-                            </button>
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled>
-                                <input class="utch" type="text" id="cantidad_paginas" readonly value="<?php echo $cantidad_paginas ?>" disabled>
-                            </button>
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm">
+                            <input class="utch" type="text" id="pagina_actual" value="<?php echo $pagina_actual ?>" onchange="mover_pagina(this.value)">
+                        </button>
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm" disabled>
+                            <input class="utch" type="text" id="cantidad_paginas" readonly value="<?php echo $cantidad_paginas ?>" disabled>
+                        </button>
 
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $pagina_actual + 1 ?>')">
-                                <i class="fas fa-angle-right"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $cantidad_paginas ?>')">
-                                <i class="fas fa-angle-double-right"></i>
-                            </button>
-                        </div>
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $pagina_actual + 1 ?>')">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-rounded btn-sm" onclick="mover_pagina('<?php echo $cantidad_paginas ?>')">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
 
-                        <span>
-                            <?php
-                            echo "mostrando del ";
-                            echo ($primer_registro + 1)  . " al " . ($primer_registro + $num_reg_paginas);
-                            echo " de " . $cantidad_registros . " registro(s)";
-                            ?>
-                        </span>
-                    </td>
-                </tr>
-            </tfoot>
+                    <span>
+                        <?php
+                        echo "mostrando del ";
+                        echo ($primer_registro + 1)  . " al " . ($primer_registro + $num_reg_paginas);
+                        echo " de " . $cantidad_registros . " registro(s)";
+                        ?>
+                    </span>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 </form>
