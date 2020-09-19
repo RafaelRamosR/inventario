@@ -32,7 +32,7 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nombre de sexo</th>
+                <th>Nombre de estado civil</th>
                 <th>Acciones</th>
             </tr>
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
