@@ -18,7 +18,7 @@
              <div class="card-header">Agregar contenido</div>
              <div class="card-body">
                  <form id="formulario" method="post">
-                     <input type="hidden" name="contenido_id" id="contenido_id" />
+                     <input type="hidden" name="id_contenido" id="id_contenido" />
                      <div class="form-group row">
                          <label for="titulo" class="col-sm-3 col-form-label">Titulo</label>
                          <div class="col-sm-9">
@@ -93,7 +93,7 @@
          var p = "id=" + id;
          $.get("?modulo=contenido&accion=asignar", p, function(respuesta) {
              var r = jQuery.parseJSON(respuesta);
-             $("#contenido_id").val(r.contenido_id);
+             $("#id_contenido").val(r.id_contenido);
              $("#modulo").val(r.modulo);
              $("#titulo").val(r.titulo);
              //$("#contenido").val(r.contenido);
@@ -101,17 +101,12 @@
          });
      }
 
-
      function eliminar(id) {
-
          if (confirm("¿Desea eliminar el registro?")) {
-             var p = "contenido_id=" + id;
+             var p = "id_contenido=" + id;
              $.post("?modulo=contenido&accion=eliminar", p, function(respuesta) {
-
                  try {
                      var r = jQuery.parseJSON(respuesta);
-
-
                      if (r.error == true) {
                          $.notify({
                              message: r.msg
@@ -121,8 +116,6 @@
                          });
                      } else {
                          cargar_tabla();
-
-
                          $.notify({
                              message: r.msg
                          }, {
@@ -141,8 +134,6 @@
              });
          }
      }
-
-
 
      cargar_tabla();
 
@@ -172,8 +163,6 @@
 
              try {
                  var r = jQuery.parseJSON(respuesta);
-
-
                  if (r.error == true) {
                      $.notify({
                          message: r.msg
@@ -183,11 +172,8 @@
                      });
                  } else {
                      cargar_tabla();
-
                      $("#div-tabla").show();
                      $("#div-formulario").hide();
-
-
                      $.notify({
                          message: r.msg
                      }, {
@@ -209,7 +195,6 @@
 
      });
 
-
      $("#btn-modificar").click(function() {
          if (confirm("¿Desea modificar el registro?")) {
              $.notifyClose();
@@ -219,16 +204,11 @@
              var contenido = tinyMCE.get('contenido').getContent();
              parametros = parametros + "&contenido=" + encodeURIComponent(contenido);
 
-
              $.post("?modulo=contenido&accion=modificar", parametros, function(respuesta) {
                  $("#div-pb").hide();
                  $("#div-btn").show();
-
-
                  try {
                      var r = jQuery.parseJSON(respuesta);
-
-
                      if (r.error == true) {
                          $.notify({
                              message: r.msg
@@ -238,11 +218,8 @@
                          });
                      } else {
                          cargar_tabla();
-
                          $("#div-tabla").show();
                          $("#div-formulario").hide();
-
-
                          $.notify({
                              message: r.msg
                          }, {
@@ -258,8 +235,6 @@
                          delay: 0
                      });
                  }
-
-
              });
          }
      });

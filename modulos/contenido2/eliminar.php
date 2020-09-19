@@ -1,9 +1,9 @@
 <?php
 require_once("conexion.php");
 
-$contenido_id = $_POST['contenido_id'];
+$id_contenido = $_POST['id_contenido'];
 
-$sql = "DELETE FROM  contenido WHERE contenido_id ='$contenido_id'";
+$sql = "DELETE FROM  contenido WHERE id_contenido ='$id_contenido'";
 
 mysqli_query($conexion, $sql);
 $respuesta = [];

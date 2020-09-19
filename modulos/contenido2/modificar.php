@@ -1,7 +1,7 @@
 <?php
 require_once("conexion.php");
 
-$contenido_id = $_POST['contenido_id'];
+$id_contenido = $_POST['id_contenido'];
 $modulo = $_POST['modulo'];
 $titulo = $_POST['titulo'];
 $contenido = $_POST['contenido'];
@@ -24,7 +24,7 @@ $sql = "UPDATE  contenido SET
             modulo='$modulo', 
             titulo='$titulo', 
             contenido='$contenido' 
-        WHERE contenido_id ='$contenido_id'
+        WHERE id_contenido ='$id_contenido'
                          ";
 
 mysqli_query($conexion, $sql);
