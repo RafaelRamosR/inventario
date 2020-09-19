@@ -55,7 +55,6 @@
               <option value="pdf">Archivo PDF</option>
               <option value="excel">Microsoft Excel</option>
               <option value="word">Microsoft Word</option>
-
             </select>
           </div>
         </div>
