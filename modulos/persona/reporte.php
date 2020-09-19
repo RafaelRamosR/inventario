@@ -1,40 +1,54 @@
-<div class="container mt-4" style="max-width:700px">
+<div class="container mt-5 mb-5" style="max-width:700px">
   <div class="card">
-    <div class="card-header">Reporte de personas</div>
+    <div class="card-header text-center">Reporte de personas</div>
     <div class="card-body">
       <form method="post" target="_blank" action="?modulo=persona&accion=descarga">
 
         <div class="form-group row">
-          <label for="numero_identificacion" class="col-sm-4 col-form-label">Número de identificación</label>
+          <label for="identifica" class="col-sm-4 col-form-label">Identificación</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion">
+            <input type="text" name="identifica" class="form-control form-control-sm" />
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="numero_identificacion" class="col-sm-4 col-form-label">Número de identificación</label>
+          <label for="nombre" class="col-sm-4 col-form-label">Nombre usuario</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion">
+            <input type="text" name="nombre" class="form-control form-control-sm" />
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="numero_identificacion" class="col-sm-4 col-form-label">Número de identificación</label>
+          <label for="fecha" class="col-sm-4 col-form-label">Fecha nacimiento</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion">
+            <input type="date" name="fecha" class="form-control form-control-sm" />
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="numero_identificacion" class="col-sm-4 col-form-label">Número de identificación</label>
+          <label for="municipio" class="col-sm-4 col-form-label">Mun. nacimiento</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="numero_identificacion" name="numero_identificacion">
+            <input type="text" name="municipio" class="form-control form-control-sm" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="telefono" class="col-sm-4 col-form-label">Teléfono</label>
+          <div class="col-sm-8">
+            <input type="text" name="telefono" class="form-control form-control-sm" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="telefono_alt" class="col-sm-4 col-form-label">Teléfono alternativo</label>
+          <div class="col-sm-8">
+            <input type="text" name="telefono_alt" class="form-control form-control-sm" />
           </div>
         </div>
         <!-- Tipo de formato -->
         <div class="form-group row">
-          <label for="formato" class="col-sm-3 col-form-label">Formato</label>
-          <div class="col-sm-9">
+          <label for="formato" class="col-sm-4 col-form-label">Formato</label>
+          <div class="col-sm-8">
             <select class="form-control " id="formato" name="formato" required>
               <option value="">(Seleccionar formato de salida)</option>
               <option value="html">Ver en linea</option>
