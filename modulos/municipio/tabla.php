@@ -22,6 +22,7 @@ $sql_base = "SELECT
     WHERE TRUE $filtros
     ORDER BY nombre
 ";
+
 //Paginación
 $num_reg_paginas = 5;
 $pagina_actual = $_GET['pagina_actual'];
