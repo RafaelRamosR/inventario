@@ -488,7 +488,7 @@ $modulos["departamento"] = [
 
 $modulos["municipio"] = [
     "ruta" => "modulos/municipio/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
