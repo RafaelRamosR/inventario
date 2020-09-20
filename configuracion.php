@@ -668,7 +668,7 @@ $modulos["proveedores"] = [
 
 
 $modulos["contenido"] = [
-    "ruta" => "modulos/contenido2/",
+    "ruta" => "modulos/contenido/",
     //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
