@@ -27,7 +27,8 @@
 
         <div class="form-group row mb-0">
           <div id="div-btn" class="col-sm-12 text-right">
-            <input type="submit" class="btn btn-secondary" id="btn-desca" value="Generar">
+            <a class="btn btn-sm btn-secondary" href="javascript:history.back()">Volver</a>
+            <input type="submit" class="btn btn-sm btn-success" id="btn-desca" value="Generar">
           </div>
         </div>
       </form>

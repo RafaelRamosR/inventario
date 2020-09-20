@@ -4,6 +4,7 @@
             <h2 class="float-left">Registro de tipos de identidad</h2>
             <div>
                 <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+                <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=tipo_identidad&accion=reporte" role="button">Reporte</a>
                 <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
             </div>
         </div>
