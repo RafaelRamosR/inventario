@@ -20,7 +20,7 @@ if (
 
 if ($error != "") {
     $resultado['error'] = true;
-    $resultado['mensaje'] = $error;
+    $resultado['msg'] = $error;
     echo json_encode($resultado);
     exit(0);
 }
@@ -46,10 +46,10 @@ $resultado = [];
 
 if (mysqli_error($conexion) == "") {
     $resultado["error"] = false;
-    $resultado["mensaje"] = "Datos modificados con éxito.";
+    $resultado["msg"] = "Datos modificados con éxito.";
 } else {
     $resultado["error"] = true;
-    $resultado["mensaje"] = mysqli_error($conexion);
+    $resultado["msg"] = mysqli_error($conexion);
 }
 // json_encode convierte el arreglo en formato JSON
 echo json_encode($resultado);

@@ -770,14 +770,14 @@ $modulos["permiso_rol"] = [
 
 $modulos["modulo_accion"] = [
     "ruta" => "modulos/modulo_accion/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -792,10 +792,18 @@ $modulos["modulo_accion"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "cargar_datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
