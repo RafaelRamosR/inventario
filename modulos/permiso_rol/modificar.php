@@ -27,7 +27,7 @@ if (
 
 if ($error != "") {
     $resultado['error'] = true;
-    $resultado['mensaje'] = $error;
+    $resultado['msg'] = $error;
     echo json_encode($resultado);
     exit(0);
 }
@@ -48,15 +48,11 @@ $sql = "UPDATE permiso_rol SET
                  ";
 mysqli_query($conexion, $sql);
 
-//$resultado = array();
-
-
 if (mysqli_error($conexion) == "") {
     $resultado["error"] = false;
-    $resultado["mensaje"] = "Datos agregados con éxito.";
+    $resultado["msg"] = "Datos agregados con éxito.";
 } else {
     $resultado["error"] = true;
-    $resultado["mensaje"] = mysqli_error($conexion);
+    $resultado["msg"] = mysqli_error($conexion);
 }
-// json_encode convierte el arreglo en formato JSON
 echo json_encode($resultado);

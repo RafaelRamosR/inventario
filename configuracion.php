@@ -690,37 +690,6 @@ $modulos["contenido"] = [
   ]
 ];
 
-// $modulos["contenido"] = [
-//     "ruta" => "modulos/contenido/",
-//     //"verificar_permisos" => true,
-//     "acciones" => [
-//         "ver" => [
-//             "archivo" => "index.php",
-//             "diseño" => "horizontal"
-//         ],
-//         "listar" => [
-//             "archivo" => "tabla.php",
-//             "diseño" => "html"
-//         ],
-//         "asignar" => [
-//             "archivo" => "asignar.php",
-//             "diseño" => "json"
-//         ],
-//         "agregar" => [
-//             "archivo" => "agregar.php",
-//             "diseño" => "json"
-//         ],
-//         "modificar" => [
-//             "archivo" => "modificar.php",
-//             "diseño" => "json"
-//         ],
-//         "eliminar" => [
-//             "archivo" => "eliminar.php",
-//             "diseño" => "json"
-//         ]
-//     ]
-// ];
-
 $modulos["rol"] = [
     "ruta" => "modulos/rol/",
     //"verificar_permisos" => true,
@@ -762,14 +731,14 @@ $modulos["rol"] = [
 
 $modulos["permiso_rol"] = [
     "ruta" => "modulos/permiso_rol/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -784,10 +753,18 @@ $modulos["permiso_rol"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "cargar_datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
