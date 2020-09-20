@@ -371,7 +371,6 @@
     $("#formulario").trigger("reset");
     $("#btn-agregar").show();
     $("#btn-modificar").hide();
-
   });
 
   $("#btn-agregar").click(function() {
