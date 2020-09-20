@@ -36,7 +36,7 @@ $modulos["datos_personales"] = [
         "modificar" => [
             "archivo" => "modificar.php",
             "diseño" => "json",
-        
+
         ]
     ]
 ];
@@ -116,7 +116,7 @@ $modulos["cerrar-sesion"] = [
         "cerrar" => [
             "archivo" => "cerrar.php",
             "diseño" => "json"
-        ] 
+        ]
     ]
 ];
 
@@ -239,14 +239,14 @@ $modulos["ingreso"] = [
 
 $modulos["entrega"] = [
     "ruta" => "modulos/entrega/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -261,10 +261,18 @@ $modulos["entrega"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
@@ -621,7 +629,7 @@ $modulos["zona_de_residencia"] = [
 
 $modulos["proveedores"] = [
     "ruta" => "modulos/proveedores/",
-   //"verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
@@ -660,34 +668,34 @@ $modulos["proveedores"] = [
 
 
 $modulos["contenido"] = [
-  "ruta" => "modulos/contenido2/",
-  //"verificar_permisos" => true,
-  "acciones" => [
-      "ver" => [
-          "archivo" => "index.php",
-          "diseño" => "horizontal"
-      ],
-      "listar" => [
-          "archivo" => "tabla.php",
-          "diseño" => "html"
-      ],
-      "agregar" => [
-          "archivo" => "agregar.php",
-          "diseño" => "json"
-      ],
-      "modificar" => [
-          "archivo" => "modificar.php",
-          "diseño" => "json"
-      ],
-      "eliminar" => [
-          "archivo" => "eliminar.php",
-          "diseño" => "json"
-      ],
-      "asignar" => [
-          "archivo" => "asignar.php",
-          "diseño" => "json"
-      ],
-  ]
+    "ruta" => "modulos/contenido2/",
+    //"verificar_permisos" => true,
+    "acciones" => [
+        "ver" => [
+            "archivo" => "index.php",
+            "diseño" => "horizontal"
+        ],
+        "listar" => [
+            "archivo" => "tabla.php",
+            "diseño" => "html"
+        ],
+        "agregar" => [
+            "archivo" => "agregar.php",
+            "diseño" => "json"
+        ],
+        "modificar" => [
+            "archivo" => "modificar.php",
+            "diseño" => "json"
+        ],
+        "eliminar" => [
+            "archivo" => "eliminar.php",
+            "diseño" => "json"
+        ],
+        "asignar" => [
+            "archivo" => "asignar.php",
+            "diseño" => "json"
+        ],
+    ]
 ];
 
 $modulos["rol"] = [
@@ -852,11 +860,11 @@ $modulos["reporte1"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -867,11 +875,11 @@ $modulos["reporte2"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -882,11 +890,11 @@ $modulos["reporte3"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -897,11 +905,11 @@ $modulos["reporte4"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -912,11 +920,11 @@ $modulos["reporte5"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -927,11 +935,11 @@ $modulos["reporte6"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -942,11 +950,11 @@ $modulos["reporte7"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -957,11 +965,11 @@ $modulos["reporte8"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -972,11 +980,11 @@ $modulos["reporte_estadistico"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -987,11 +995,11 @@ $modulos["reporte_estadistico1"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -1002,11 +1010,11 @@ $modulos["reporte_estadistico2"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
@@ -1017,11 +1025,11 @@ $modulos["reporte_estadistico3"] = [
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
-            "diseño" => "horizontal" 
+            "diseño" => "horizontal"
         ],
         "mostrar" => [
             "archivo" => "mostrar.php",
-            "diseño" => "html" 
+            "diseño" => "html"
         ],
     ]
 ];
