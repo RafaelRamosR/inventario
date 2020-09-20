@@ -94,10 +94,31 @@
         if (confirm("¿Realmente desea eliminar el registro?")) {
             var parametros = "id=" + id;
             $.post("?modulo=zona_de_residencia&accion=eliminar", parametros, function(respuesta) {
-                var r = jQuery.parseJSON(respuesta);
-                alert(r.msg);
-                if (r.error == false) {
-                    cargar_tabla()
+                try {
+                    var r = jQuery.parseJSON(respuesta);
+                    if (r.error == true) {
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'danger',
+                            delay: 0
+                        });
+                    } else {
+                        cargar_tabla();
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'success',
+                            delay: 0
+                        });
+                    }
+                } catch (error) {
+                    $.notify({
+                        message: error + "<br/></br>" + respuesta
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
                 }
             });
         }
@@ -117,34 +138,81 @@
     });
 
     $("#btn-agregar").click(function() {
+        $.notifyClose();
+        $("#div-pb").show();
+        $("#div-btn").hide();
         var parametros = $("#formulario").serialize();
         $.post("?modulo=zona_de_residencia&accion=agregar", parametros, function(respuesta) {
-            r = JSON.parse(respuesta);
-            alert(r.msg);
-            if (r.error == false) {
-                $("#div-tabla").show();
-                $("#div-formulario").hide();
-                cargar_tabla();
+            $("#div-pb").hide();
+            $("#div-btn").show();
+            try {
+                var r = jQuery.parseJSON(respuesta);
+                if (r.error == true) {
+                    $.notify({
+                        message: r.msg
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
+                } else {
+                    cargar_tabla();
+                    $("#div-tabla").show();
+                    $("#div-formulario").hide();
+                    $.notify({
+                        message: r.msg
+                    }, {
+                        type: 'success',
+                        delay: 0
+                    });
+                }
+            } catch (error) {
+                $.notify({
+                    message: error + "<br/></br>" + respuesta
+                }, {
+                    type: 'danger',
+                    delay: 0
+                });
             }
         });
     });
 
     $("#btn-modificar").click(function() {
         if (confirm("¿Desea modificar el registro?")) {
+            $.notifyClose();
             $("#div-pb").show();
             $("#div-btn").hide();
             var parametros = $("#formulario").serialize();
             $.post("?modulo=zona_de_residencia&accion=modificar", parametros, function(respuesta) {
                 $("#div-pb").hide();
                 $("#div-btn").show();
-                var r = jQuery.parseJSON(respuesta);
-                alert(r.msg);
-                if (r.error == false) {
-                    cargar_tabla();
-                    $("#div-tabla").show();
-                    $("#div-formulario").hide();
-                } else {
-                    alert(r.error);
+
+                try {
+                    var r = jQuery.parseJSON(respuesta);
+                    if (r.error == true) {
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'danger',
+                            delay: 0
+                        });
+                    } else {
+                        cargar_tabla();
+                        $("#div-tabla").show();
+                        $("#div-formulario").hide();
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'success',
+                            delay: 0
+                        });
+                    }
+                } catch (error) {
+                    $.notify({
+                        message: error + "<br/></br>" + respuesta
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
                 }
             });
         }
