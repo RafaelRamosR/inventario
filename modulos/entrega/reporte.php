@@ -1,6 +1,6 @@
 <div class="container mt-5 mb-5" style="max-width:700px">
     <div class="card">
-        <div class="card-header text-center">Reporte de productos</div>
+        <div class="card-header text-center">Reporte de entregas</div>
         <div class="card-body">
             <form method="post" target="_blank" action="?modulo=entrega&accion=descarga">
 
@@ -8,41 +8,6 @@
                     <label for="producto" class="col-sm-4 col-form-label">Producto</label>
                     <div class="col-sm-8">
                         <input type="text" name="producto" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="adquisicion" class="col-sm-4 col-form-label">Fecha adquisición</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="adquisicion" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="entrega" class="col-sm-4 col-form-label">Fecha entrega</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="entrega" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="referencia" class="col-sm-4 col-form-label">Referencia</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="referencia" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="responsable" class="col-sm-4 col-form-label">Responsable</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="responsable" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="cantidad" class="col-sm-4 col-form-label">Cantidad</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="cantidad" class="form-control form-control-sm" />
                     </div>
                 </div>
                 <!-- Tipo de formato -->

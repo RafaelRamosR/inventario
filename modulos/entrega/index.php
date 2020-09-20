@@ -4,7 +4,7 @@
             <h2 class="float-left">Registro de entregas</h2>
             <div>
                 <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
-                <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=entrega&accion=reporte" role="button">Reporte</a>
+                <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=entrega&accion=reporte" role="button">Estadísticas</a>
                 <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
             </div>
         </div>
@@ -21,8 +21,8 @@
             </div>
 
             <div class="card-body">
-                <form id="formulario" method="post" action="?modulo=agregar-entrega" autocomplete="off">
-                    <h6 class="card-title text-center">Entrega de</h6>
+                <form id="formulario" autocomplete="off">
+                    <h6 class="card-title text-center">Entrega</h6>
                     <input type="hidden" name="id_entrega" id="id_entrega" />
                     <div class="form-group row">
                         <label for="id_producto" class="col-sm-3 col-form-label">Producto</label>

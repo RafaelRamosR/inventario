@@ -11,45 +11,13 @@ if (isset($_POST['producto']) == true &&  $_POST['producto']  != "") {
     $filtros .= " AND p.nombre LIKE '%$producto%' ";
 }
 
-if (isset($_POST['adquisicion']) == true && $_POST['adquisicion']  != "") {
-    $filtros .= " AND e.fecha_adquisicion = '$_POST[adquisicion]' ";
-}
-
-if (isset($_POST['entrega']) == true && $_POST['entrega']  != "") {
-    $filtros .= " AND e.fecha_entrega = '$_POST[entrega]' ";
-}
-
-if (isset($_POST['referencia']) == true && $_POST['referencia']  != "") {
-    $referencia = $_POST['referencia'];
-    $referencia = str_replace(" ", "%", $referencia);
-    $filtros .= " AND e.referencia LIKE '%$referencia%' ";
-}
-
-if (isset($_POST['cantidad']) == true && $_POST['cantidad']  != "") {
-    $cantidad = $_POST['cantidad'];
-    $cantidad = str_replace(" ", "%", $cantidad);
-    $filtros .= " AND e.cantidad LIKE '%$cantidad%' ";
-}
-
-if (isset($_POST['responsable']) == true && $_POST['responsable']  != "") {
-    $responsable = $_POST['responsable'];
-    $responsable = str_replace(" ", "%", $responsable);
-    $filtros .= " AND e.responsable LIKE '%$responsable%' ";
-}
-
-$sql_base = "SELECT             
-    e.id_entrega,
-    e.id_producto,
-    p.nombre,
-    e.fecha_adquisicion,
-    e.fecha_entrega,
-    e.referencia,
-    e.responsable,
-    e.cantidad
-    FROM entrega e
-    JOIN producto p ON e.id_producto = p.id_producto
-    WHERE TRUE $filtros
-    ORDER BY nombre
+$sql_base = "SELECT 
+  COUNT(*) AS total_filas,
+  MIN(fecha_adquisicion) AS fecha_min,
+  MAX(fecha_entrega) AS fecha_max, 
+  SUM(cantidad) AS total,
+  AVG(Is_entregado) AS promedio
+  FROM entrega
 ";
 
 ?>
@@ -74,12 +42,11 @@ $sql_base = "SELECT
   <thead>
     <tr style="font-weight: bold; background-color: #ddd;">
       <th style="width: 30pt;">Num.</th>
-      <th style="width: 100pt;">Producto</th>
-      <th style="width: 100pt;">Fecha adquisición</th>
-      <th style="width: 70pt;">Fecha entrega</th>
-      <th style="width: 70pt;">Referencia</th>
-      <th style="width: 70px;">Responsable</th>
-      <th style="width: 70px;">Cantidad</th>
+      <th style="width: 50pt;">Total filas</th>
+      <th style="width: 120pt;">Fecha mínima adquisición</th>
+      <th style="width: 120pt;">Fecha máxima entrega</th>
+      <th style="width: 90pt;">Total de Entregas</th>
+      <th style="width: 90px;">Promedio Entrega</th>
     </tr>
   </thead>
   <tbody>
@@ -95,12 +62,11 @@ $sql_base = "SELECT
     ?>
       <tr style="background-color: <?php echo $color ?>;">
         <td style="width: 30pt;"><?php echo $num++ ?></td>
-        <td style="width: 100pt;"><?php echo $row['nombre'] ?></td>
-        <td style="width: 100pt;"><?php echo $row['fecha_adquisicion'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['fecha_entrega'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['referencia'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['responsable'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['cantidad'] ?></td>
+        <td style="width: 50pt;"><?php echo $row['total_filas'] ?></td>
+        <td style="width: 120pt;"><?php echo $row['fecha_min'] ?></td>
+        <td style="width: 120pt;"><?php echo $row['fecha_max'] ?></td>
+        <td style="width: 90pt;"><?php echo $row['total'] ?></td>
+        <td style="width: 90pt;"><?php echo $row['promedio'] ?></td>
       </tr>
     <?php
     }

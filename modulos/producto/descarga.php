@@ -11,54 +11,13 @@ if (isset($_POST['nombre_producto']) &&  $_POST['nombre_producto'] != "") {
     $filtros .= "  AND  p.nombre LIKE '%$nombre%'";
 }
 
-if (isset($_POST['tipo_producto']) &&  $_POST['tipo_producto'] != "") {
-    $nombre = $_POST['tipo_producto'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  tp.nombre LIKE '%$nombre%'";
-}
-
-if (isset($_POST['modelo']) == true &&  $_POST['modelo']  != "") {
-    $nombre = $_POST['modelo'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  p.modelo LIKE '%$nombre%'";
-}
-
-if (isset($_POST['stock']) == true &&  $_POST['stock']  != "") {
-    $nombre = $_POST['stock'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  p.stock LIKE '%$nombre%'";
-}
-
-if (isset($_POST['fecha_adquisicion']) == true &&  $_POST['fecha_adquisicion']  != "") {
-    $filtros .= " AND p.fecha_adquisicion = '$_POST[fecha_adquisicion]' ";
-}
-
-if (isset($_POST['proveedor']) == true &&  $_POST['proveedor']  != "") {
-    $nombre = $_POST['proveedor'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  pr.nombre LIKE '%$nombre%'";
-}
-
-if (isset($_POST['referencia']) == true &&  $_POST['referencia']  != "") {
-    $nombre = $_POST['referencia'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= "  AND  p.referencia LIKE '%$nombre%'";
-}
-
-$sql_base = "SELECT           
-    p.id_producto,
-    p.nombre AS nombre_producto,
-    tp.nombre AS nombre_tipo,
-    p.modelo,
-    p.stock,
-    p.fecha_adquisicion,
-    pr.nombre AS proveedor,
-    p.referencia
-    FROM producto p
-    INNER JOIN tipo_producto tp ON p.id_tipo_producto = tp.id_tipo_producto
-    INNER JOIN proveedores pr ON p.id_provedore = pr.id_proveedor
-    WHERE TRUE $filtros
-    ORDER BY nombre_producto
+$sql_base = "SELECT 
+  COUNT(*) AS total_filas,
+  MIN(fecha_adquisicion) AS fecha_min,
+  MAX(stock) AS stock_max, 
+  SUM(stock) AS total,
+  AVG(id_tipo_producto) AS promedio
+  FROM producto p
 ";
 
 ?>
@@ -83,13 +42,11 @@ $sql_base = "SELECT
   <thead>
     <tr style="font-weight: bold; background-color: #ddd;">
       <th style="width: 30pt;">Num.</th>
-      <th style="width: 70pt;">Producto</th>
-      <th style="width: 100pt;">Tipo</th>
-      <th style="width: 70pt;">Modelo</th>
-      <th style="width: 30pt;">Stock</th>
-      <th style="width: 70px;">Adquisicion</th>
-      <th style="width: 70px;">Proveedor</th>
-      <th style="width: 70px;">Referencia</th>
+      <th style="width: 50pt;">Total filas</th>
+      <th style="width: 120pt;">Fecha minima Aquisicion</th>
+      <th style="width: 80pt;">Máximo stock</th>
+      <th style="width: 120px;">Total Stock Productos</th>
+      <th style="width: 120px;">Promedio productos</th>
     </tr>
   </thead>
   <tbody>
@@ -105,13 +62,11 @@ $sql_base = "SELECT
     ?>
       <tr style="background-color: <?php echo $color ?>;">
         <td style="width: 30pt;"><?php echo $num++ ?></td>
-        <td style="width: 70pt;"><?php echo $row['nombre_producto'] ?></td>
-        <td style="width: 100pt;"><?php echo $row['nombre_tipo'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['modelo'] ?></td>
-        <td style="width: 30pt;"><?php echo $row['stock'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['fecha_adquisicion'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['proveedor'] ?></td>
-        <td style="width: 70pt;"><?php echo $row['referencia'] ?></td>
+        <td style="width: 50pt;"><?php echo $row['total_filas'] ?></td>
+        <td style="width: 120pt;"><?php echo $row['fecha_min'] ?></td>
+        <td style="width: 80pt;"><?php echo $row['stock_max'] ?></td>
+        <td style="width: 120pt;"><?php echo $row['total'] ?></td>
+        <td style="width: 120pt;"><?php echo $row['promedio'] ?></td>
       </tr>
     <?php
       }

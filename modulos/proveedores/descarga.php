@@ -11,34 +11,9 @@ if (isset($_POST['nombre']) == true &&  $_POST['nombre']  != "") {
     $filtros .= " AND p.nombre LIKE '%$nombre%' ";
 }
 
-if (isset($_POST['telefono']) == true &&  $_POST['telefono']  != "") {
-    $nombre = $_POST['telefono'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= " AND p.telefono LIKE '%$nombre%' ";
-}
-
-if (isset($_POST['direccion']) == true &&  $_POST['direccion']  != "") {
-    $nombre = $_POST['direccion'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= " AND p.dir LIKE '%$nombre%' ";
-}
-
-if (isset($_POST['correo']) == true &&  $_POST['correo']  != "") {
-    $nombre = $_POST['correo'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= " AND p.correo LIKE '%$nombre%' ";
-}
-
-$sql_base = "SELECT              
-    p.id_proveedor,
-    p.nombre,
-    p.telefono,
-    p.dir,
-    p.correo
-    FROM
-    proveedor p
-    WHERE TRUE $filtros
-    ORDER BY nombre
+$sql_base = "SELECT 
+  COUNT(*) AS total_filas
+  FROM proveedor
 ";
 
 ?>
@@ -63,10 +38,7 @@ $sql_base = "SELECT
   <thead>
     <tr style="font-weight: bold; background-color: #ddd;">
       <th style="width: 30pt;">Num.</th>
-      <th style="width: 150pt;">Proveedor</th>
-      <th style="width: 100pt;">Telefono</th>
-      <th style="width: 100pt;">Dirreción</th>
-      <th style="width: 120pt;">Correo</th>
+      <th style="width: 150pt;">Total filas</th>
     </tr>
   </thead>
   <tbody>
@@ -82,10 +54,7 @@ $sql_base = "SELECT
     ?>
       <tr style="background-color: <?php echo $color ?>;">
         <td style="width: 30pt;"><?php echo $num++ ?></td>
-        <td style="width: 150pt;"><?php echo $row['nombre'] ?></td>
-        <td style="width: 100pt;"><?php echo $row['telefono'] ?></td>
-        <td style="width: 100pt;"><?php echo $row['dir'] ?></td>
-        <td style="width: 120pt;"><?php echo $row['correo'] ?></td>
+        <td style="width: 150pt;"><?php echo $row['total_filas'] ?></td>
     </tr>
     <?php
       }

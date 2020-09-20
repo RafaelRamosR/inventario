@@ -10,27 +10,6 @@
             <input type="text" name="nombre" class="form-control form-control-sm" />
           </div>
         </div>
-
-        <div class="form-group row">
-          <label for="telefono" class="col-sm-4 col-form-label">Teléfono</label>
-          <div class="col-sm-8">
-            <input type="text" name="telefono" class="form-control form-control-sm" />
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="direccion" class="col-sm-4 col-form-label">Dirección</label>
-          <div class="col-sm-8">
-            <input type="text" name="direccion" class="form-control form-control-sm" />
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="correo" class="col-sm-4 col-form-label">Correo</label>
-          <div class="col-sm-8">
-            <input type="text" name="correo" class="form-control form-control-sm" />
-          </div>
-        </div>
         <!-- Tipo de formato -->
         <div class="form-group row">
           <label for="formato" class="col-sm-4 col-form-label">Formato</label>

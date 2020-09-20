@@ -10,48 +10,6 @@
                         <input type="text" name="nombre_producto" class="form-control form-control-sm" />
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <label for="tipo_producto" class="col-sm-4 col-form-label">Tipo producto</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="tipo_producto" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="fecha_adquisicion" class="col-sm-4 col-form-label">Fecha adquisición</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="fecha_adquisicion" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="modelo" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="stock" class="col-sm-4 col-form-label">Stock</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="stock" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="proveedor" class="col-sm-4 col-form-label">Proveedor</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="proveedor" class="form-control form-control-sm" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="referencia" class="col-sm-4 col-form-label">Referencia</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="referencia" class="form-control form-control-sm" />
-                    </div>
-                </div>
                 <!-- Tipo de formato -->
                 <div class="form-group row">
                     <label for="formato" class="col-sm-4 col-form-label">Formato</label>
