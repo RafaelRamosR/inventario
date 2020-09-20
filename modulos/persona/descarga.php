@@ -87,14 +87,14 @@ $sql_base = "SELECT
   </thead>
   <tbody>
     <?php
-      $result = mysqli_query($conexion, $sql_base);
-      $num = 1;
-      while ($row = mysqli_fetch_array($result)) {
-        if ($num % 2 == 0) {
-          $color = "#eeeeee";
-        } else {
-          $color = "#ffffff";
-        }
+    $result = mysqli_query($conexion, $sql_base);
+    $num = 1;
+    while ($row = mysqli_fetch_array($result)) {
+      if ($num % 2 == 0) {
+        $color = "#eeeeee";
+      } else {
+        $color = "#ffffff";
+      }
     ?>
       <tr style="background-color: <?php echo $color ?>;">
         <td style="width: 30pt;"><?php echo $num++ ?></td>
@@ -106,11 +106,11 @@ $sql_base = "SELECT
         <td style="width: 70pt;"><?php echo $row['telefono_alternativo'] ?></td>
       </tr>
     <?php
-      }
+    }
     ?>
   </tbody>
 </table>
 
 <?php
-  require_once 'php/tcpdf-config.php';
+require_once 'php/tcpdf-config.php';
 ?>

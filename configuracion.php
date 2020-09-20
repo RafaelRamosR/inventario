@@ -119,7 +119,7 @@ $modulos["cerrar-sesion"] = [
         ]
     ]
 ];
-
+//m
 $modulos["persona"] = [
     "ruta" => "modulos/persona/",
     //"verificar_permisos" => true,
@@ -158,7 +158,7 @@ $modulos["persona"] = [
         ]
     ]
 ];
-
+//m
 $modulos["producto"] = [
     "ruta" => "modulos/producto/",
     //"verificar_permisos" => true,
@@ -197,7 +197,7 @@ $modulos["producto"] = [
         ]
     ]
 ];
-
+//m
 $modulos["ingreso"] = [
     "ruta" => "modulos/ingreso/",
     //"verificar_permisos" => true,
@@ -236,7 +236,7 @@ $modulos["ingreso"] = [
         ]
     ]
 ];
-
+//m
 $modulos["entrega"] = [
     "ruta" => "modulos/entrega/",
     //"verificar_permisos" => true,
@@ -275,7 +275,7 @@ $modulos["entrega"] = [
         ]
     ]
 ];
-
+//m
 $modulos["sexo"] = [
     "ruta" => "modulos/sexo/",
     //"verificar_permisos" => true,
@@ -314,7 +314,7 @@ $modulos["sexo"] = [
         ]
     ]
 ];
-
+//m
 $modulos["tipo_identidad"] = [
     "ruta" => "modulos/tipo_identidad/",
     //"verificar_permisos" => true,
@@ -353,7 +353,7 @@ $modulos["tipo_identidad"] = [
         ]
     ]
 ];
-
+//m
 $modulos["tipo_producto"] = [
     "ruta" => "modulos/tipo_producto/",
     //"verificar_permisos" => true,
@@ -392,7 +392,7 @@ $modulos["tipo_producto"] = [
         ]
     ]
 ];
-
+//m
 $modulos["estado_civil"] = [
     "ruta" => "modulos/estado_civil/",
     //"verificar_permisos" => true,
@@ -431,7 +431,7 @@ $modulos["estado_civil"] = [
         ]
     ]
 ];
-
+//m
 $modulos["cargo"] = [
     "ruta" => "modulos/cargo/",
     //"verificar_permisos" => true,
@@ -470,7 +470,7 @@ $modulos["cargo"] = [
         ]
     ]
 ];
-
+//m
 $modulos["departamento"] = [
     "ruta" => "modulos/departamento/",
     //"verificar_permisos" => true,
@@ -509,7 +509,7 @@ $modulos["departamento"] = [
         ]
     ]
 ];
-
+//m
 $modulos["municipio"] = [
     "ruta" => "modulos/municipio/",
     //"verificar_permisos" => true,
@@ -548,7 +548,7 @@ $modulos["municipio"] = [
         ]
     ]
 ];
-
+//m
 $modulos["permiso"] = [
     "ruta" => "modulos/permiso/",
     //"verificar_permisos" => true,
@@ -587,7 +587,7 @@ $modulos["permiso"] = [
         ]
     ]
 ];
-
+//m
 $modulos["zona_de_residencia"] = [
     "ruta" => "modulos/zona_de_residencia/",
     //"verificar_permisos" => true,
@@ -626,7 +626,7 @@ $modulos["zona_de_residencia"] = [
         ]
     ]
 ];
-
+//m
 $modulos["proveedores"] = [
     "ruta" => "modulos/proveedores/",
     //"verificar_permisos" => true,
@@ -665,8 +665,7 @@ $modulos["proveedores"] = [
         ]
     ]
 ];
-
-
+//m
 $modulos["contenido"] = [
     "ruta" => "modulos/contenido/",
     //"verificar_permisos" => true,
@@ -697,7 +696,7 @@ $modulos["contenido"] = [
         ],
     ]
 ];
-
+//m
 $modulos["rol"] = [
     "ruta" => "modulos/rol/",
     //"verificar_permisos" => true,
@@ -736,7 +735,7 @@ $modulos["rol"] = [
         ]
     ]
 ];
-
+//m
 $modulos["permiso_rol"] = [
     "ruta" => "modulos/permiso_rol/",
     //"verificar_permisos" => true,
@@ -775,7 +774,7 @@ $modulos["permiso_rol"] = [
         ]
     ]
 ];
-
+//m
 $modulos["modulo_accion"] = [
     "ruta" => "modulos/modulo_accion/",
     //"verificar_permisos" => true,
@@ -814,7 +813,7 @@ $modulos["modulo_accion"] = [
         ]
     ]
 ];
-
+//m
 $modulos["persona_rol"] = [
     "ruta" => "modulos/persona_rol/",
     //"verificar_permisos" => true,
@@ -851,185 +850,5 @@ $modulos["persona_rol"] = [
             "archivo" => "descarga.php",
             "diseño" => "html"
         ]
-    ]
-];
-
-$modulos["reporte1"] = [
-    "ruta" => "modulos/reporte1/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte2"] = [
-    "ruta" => "modulos/reporte2/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte3"] = [
-    "ruta" => "modulos/reporte3/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte4"] = [
-    "ruta" => "modulos/reporte4/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte5"] = [
-    "ruta" => "modulos/reporte5/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte6"] = [
-    "ruta" => "modulos/reporte6/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte7"] = [
-    "ruta" => "modulos/reporte7/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte8"] = [
-    "ruta" => "modulos/reporte8/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte_estadistico"] = [
-    "ruta" => "modulos/reporte_estadistico/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte_estadistico1"] = [
-    "ruta" => "modulos/reporte_estadistico1/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte_estadistico2"] = [
-    "ruta" => "modulos/reporte_estadistico2/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
-    ]
-];
-
-$modulos["reporte_estadistico3"] = [
-    "ruta" => "modulos/reporte_estadistico3/",
-    "verificar_permisos" => true,
-    "acciones" => [
-        "ver" => [
-            "archivo" => "index.php",
-            "diseño" => "horizontal"
-        ],
-        "mostrar" => [
-            "archivo" => "mostrar.php",
-            "diseño" => "html"
-        ],
     ]
 ];
