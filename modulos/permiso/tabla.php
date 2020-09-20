@@ -1,16 +1,24 @@
 <?php
 $filtros = "";
 
-if (isset($_GET['nombre']) == true &&  $_GET['nombre']  != "") {
-    $nombre = $_GET['nombre'];
-    $nombre = str_replace(" ", "%", $nombre);
-    $filtros .= " AND c.nombre LIKE '%$nombre%' ";
+if (isset($_GET['permiso']) == true &&  $_GET['permiso']  != "") {
+    $permiso = $_GET['permiso'];
+    $permiso = str_replace(" ", "%", $permiso);
+    $filtros .= " AND e.nombre LIKE '%$permiso%' ";
 }
 
-$sql_base = "SELECT        
-    c.id_cargo,
-    c.nombre
-    FROM cargo c
+if (isset($_GET['descripcion']) == true &&  $_GET['descripcion']  != "") {
+    $descripcion = $_GET['descripcion'];
+    $descripcion = str_replace(" ", "%", $descripcion);
+    $filtros .= " AND e.descripcion LIKE '%$descripcion%' ";
+}
+
+$sql_base = "SELECT           
+    e.id_permiso,
+    e.descripcion,
+    e.nombre
+    FROM
+    permiso e
     WHERE TRUE $filtros
     ORDER BY nombre
 ";
@@ -31,13 +39,17 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nombre de cargo</th>
+                <th>Tipo permiso</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
                 <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
+                    <input type="text" name="permiso" class="form-control form-control-sm" value="<?php echo isset($_GET['permiso']) ? $_GET['permiso'] : ""  ?>" />
+                </th>
+                <th scope="col">
+                    <input type="text" name="descripcion" class="form-control form-control-sm" value="<?php echo isset($_GET['descripcion']) ? $_GET['descripcion'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
@@ -53,12 +65,13 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             while ($row = mysqli_fetch_assoc($rs)) {
                 echo "<tr>";
                 echo "<td>$num</td>";
+                echo "<td>$row[descripcion]</td>";
                 echo "<td>$row[nombre]</td>";
                 echo "<td class='acciones'>
-                            <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_cargo]\")'>
+                            <a href='javascript:;' class='eliminar' onclick='eliminar(\"$row[id_permiso]\")'>
                                 <i class='fa fa-trash'></i>
                             </a>
-                            <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_cargo]\")'>
+                            <a href='javascript:;' class='modificar' onclick='modificar(\"$row[id_permiso]\")'>
                                 <i class='fa fa-pencil-alt modificar'></i>
                             </a>
                         </td>

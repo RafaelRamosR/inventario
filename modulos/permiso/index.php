@@ -1,237 +1,236 @@
-<?php
-require_once("conexion.php");
-?>
-    <div id="contenedor-listado" class="content mt-3" style="width:900px; margin:auto">
-
-        <div class="card">
-            
-            <div class="card-header">
-                permiso
-                <button id="btn-mostrar-filtros" class="btn btn-sm btn-secondary float-right ml-1">Buscar</button>
-
-                <button id="btn-agregar" class="btn btn-sm btn-secondary float-right ml-1">Agregar</button>
-            </div>
-
-            
-            <div id="div-formulario-busqueda" class="card-body d-none">
-
-              <form id="formulario-busqueda">
-
-                    <div class="form-group row">
-                        <label for="permiso" class="col-sm-3 col-form-label">Permiso</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="permiso" placeholder="Permiso">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label for="descripcion" class="col-sm-3 col-form-label">Descripción</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="descripcion" placeholder="Descripción">
-                        </div>
-                    </div>
-                    
-                    <hr />
-                    <div class="form-group row mb-0">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" id="btn-buscar" class="btn btn-sm btn-secondary">Buscar</button>
-                        </div>
-                    </div>
-                </form>
-
-            
-
-
-
-
-            </div>
-            <div id="listado">
-                <?php
-                require_once("listado.php");
-                ?>
+<div class="container mb-5">
+    <div id="div-tabla" class="card">
+        <div class="col-12 card-header">
+            <h2 class="float-left">Registro de personas</h2>
+            <div>
+                <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+                <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=permiso&accion=reporte" role="button">Reporte</a>
+                <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
             </div>
         </div>
-       
+
+        <div id="listado" style="max-height:500px; overflow-y:auto;">
+
+        </div>
     </div>
 
-
-
-    
-    
-    <div id="contenedor-formulario" class="container mt-5" style="max-width:700px; display:none">
-        <div class="card">
-           
+    <div id="div-formulario" class="container mt-4" style="max-width:700px; display: none">
+        <div class="card mb-5">
             <div class="card-header">
-                <span id="titulo"><strong>permiso</strong></span>
+                Agregar persona
             </div>
 
             <div class="card-body">
-
-                <form id="formulario" method="post" action="agregar.php" autocomplete="off">
+                <form id="formulario" autocomplete="off">
                     <h6 class="card-title text-center">permiso de</h6>
-              
                     <input type="hidden" name="id_permiso" id="id_permiso" />
-
                     <div class="form-group row">
                         <label for="descripcion" class="col-sm-3 col-form-label">descripcion</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="descripcion" name="descripcion">
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="nombre" name="nombre">
                         </div>
                     </div>
+                </form>
 
+                <div class="form-group row pt-5">
+                    <div id="div-pb" class="col-sm-12 text-center" style="display: none">
+                        <img src="img/pb.gif" />
+                    </div>
 
-                   
-                    </form>
+                    <div id="div-btn" class="col-sm-12 text-right">
+                        <input type="button" class="btn btn-success" id="btn-agregar" value="Guardar">
+                        <input type="button" class="btn btn-success" id="btn-modificar" value="Modificar">
+                        <input type="button" class="btn btn-secondary" id="btn-regresar" value="Regresar">
+                    </div>
+                </div>
             </div>
-            
-            
-            
-    <!-- LISTA DE BOTONES CON EVENTOS -->        
-            <div class="card-footer text-right">
-                <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
-                <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
-                <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
-            </div>
-            
-<!-- FIN DEL FORMULARIO -->
         </div>
-        
     </div>
-    <br><br><br><br><br>
-        <script type="text/javascript">
-            
-        $("#btn-agregar").click(function() {
-            $("#contenedor-listado").hide();
-            $("#contenedor-formulario").show();
+</div>
 
-            $("#btn-listado").show();
-            $("#btn-modificar").hide();
-            $("#btn-guardar").show();
-            $("#formulario")[0].reset(); //limpiar formulario
-            $("#formulario input, #formulario select").prop("disabled", false);
+<script>
+    var pagina_actual = 1;
 
+    function mover_pagina(pagina) {
+        if (pagina < 1) {
+            return;
+        }
+
+        var cantidad_paginas = parseInt($("#cantidad_paginas").val());
+        if (pagina > cantidad_paginas) {
+            return;
+        }
+
+        pagina_actual = pagina;
+        cargar_tabla();
+    }
+
+    function cargar_tabla() {
+        var parametros = $("#form-filtros").serialize();
+        parametros = parametros + "&pagina_actual=" + pagina_actual;
+        $("#listado").html('<div class="text-center"><img src="img/pb.gif"/></div>');
+        $("#listado").load("?modulo=permiso&accion=listar", parametros);
+    }
+
+    function modificar(id) {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
+        $("#btn-agregar").hide();
+        $("#btn-modificar").show();
+
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+
+        var parametros = "id=" + id;
+        $.get("?modulo=permiso&accion=asignar", parametros, function(respuesta) {
+
+            var r = jQuery.parseJSON(respuesta);
+
+            $("#id_permiso").val(r.id_permiso);
+            $("#descripcion").val(r.descripcion);
+            $("#nombre").val(r.nombre);
         });
+    }
 
-        $("#btn-guardar").click(function() {
-            var parametros = $("#formulario").serialize();
-            $.post("?modulo=permiso&accion=agregar", parametros, function(respuesta) {
-                //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                 r= JSON.parse(respuesta);
-                // console.log(r);
-                 alert(r.msg);
-                if (r.error == false) {
-                    $("#contenedor-listado").show();
-                    $("#contenedor-formulario").hide();
-
-                      cargar_listado();
+    function eliminar(id) {
+        if (confirm("¿Realmente desea eliminar el registro?")) {
+            var parametros = "id=" + id;
+            $.post("?modulo=permiso&accion=eliminar", parametros, function(respuesta) {
+                try {
+                    var r = jQuery.parseJSON(respuesta);
+                    if (r.error == true) {
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'danger',
+                            delay: 0
+                        });
+                    } else {
+                        cargar_tabla();
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'success',
+                            delay: 0
+                        });
+                    }
+                } catch (error) {
+                    $.notify({
+                        message: error + "<br/></br>" + respuesta
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
                 }
-
             });
+        }
+    }
 
-        });
+    cargar_tabla();
 
+    $("#btn-mostrar-formulario-agregar").click(function() {
+        $("#div-tabla").hide();
+        $("#div-formulario").show();
 
+        //Limpiar el formulario
+        $("#formulario").trigger("reset");
+        $("#btn-agregar").show();
+        $("#btn-modificar").hide();
+    });
 
-        $("#btn-modificar").click(function() {
-            if (confirm("¿Desea modificar el registro?")) {
-                var parametros = $("#formulario").serialize();
-                $.post("?modulo=permiso&accion=modificar", parametros, function(respuesta) {
-                    //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                    var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                        $("#contenedor-listado").show();
-                        $("#contenedor-formulario").hide();
-                        cargar_listado();
-                    }
+    $("#btn-agregar").click(function() {
+        $.notifyClose();
+        $("#div-pb").show();
+        $("#div-btn").hide();
+        var parametros = $("#formulario").serialize();
+        $.post("?modulo=permiso&accion=agregar", parametros, function(respuesta) {
+            $("#div-pb").hide();
+            $("#div-btn").show();
+            try {
+                var r = jQuery.parseJSON(respuesta);
+                if (r.error == true) {
+                    $.notify({
+                        message: r.msg
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
+                } else {
+                    cargar_tabla();
+                    $("#div-tabla").show();
+                    $("#div-formulario").hide();
+                    $.notify({
+                        message: r.msg
+                    }, {
+                        type: 'success',
+                        delay: 0
+                    });
+                }
+            } catch (error) {
+                $.notify({
+                    message: error + "<br/></br>" + respuesta
+                }, {
+                    type: 'danger',
+                    delay: 0
                 });
             }
         });
-            
+    });
 
-        $("#btn-regresar").click(function() {
-            $("#contenedor-listado").show();
-            $("#contenedor-formulario").hide();
-        });
+    $("#btn-modificar").click(function() {
+        if (confirm("¿Desea modificar el registro?")) {
+            $.notifyClose();
+            $("#div-pb").show();
+            $("#div-btn").hide();
+            var parametros = $("#formulario").serialize();
+            $.post("?modulo=permiso&accion=modificar", parametros, function(respuesta) {
+                $("#div-pb").hide();
+                $("#div-btn").show();
 
-        function mostrar(id_permiso) {
-            var parametros = "id_permiso=" + id_permiso;
-            $.get("?modulo=permiso&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide(); 
-                $("#btn-modificar").hide();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", true);
-
-                var r = jQuery.parseJSON(respuesta);
-
-                $("#descripcion").val(r.descripcion);
-                $("#nombre").val(r.nombre);
-            });
-        }
-
-
-
-        function eliminar(id_permiso) {
-            if (confirm("¿Realmente desea eliminar el registro?")) {
-                var parametros = "id_permiso=" + id_permiso;
-                $.post("?modulo=permiso&accion=eliminar", parametros, function(respuesta) {
+                try {
                     var r = jQuery.parseJSON(respuesta);
-                    alert(r.msg);
-                    if (r.error == false) {
-                         cargar_listado();
+                    if (r.error == true) {
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'danger',
+                            delay: 0
+                        });
+                    } else {
+                        cargar_tabla();
+                        $("#div-tabla").show();
+                        $("#div-formulario").hide();
+                        $.notify({
+                            message: r.msg
+                        }, {
+                            type: 'success',
+                            delay: 0
+                        });
                     }
-                });
-            }
-        }
-
-
-        function modificar(id_permiso) {
-            var parametros = "id_permiso=" + id_permiso;
-            $.get("?modulo=permiso&accion=datos", parametros, function(respuesta) {
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#contenedor-listado").hide(); //ocultar
-                $("#contenedor-formulario").show(); //mostrar
-
-                $("#btn-guardar").hide();
-                $("#btn-modificar").show();
-                $("#formulario")[0].reset(); //limpiar formulario
-                $("#formulario input, #formulario select").prop("disabled", false);
-                $("#identificacion").prop("disabled", true);
-
-
-                var r = jQuery.parseJSON(respuesta);
-                
-                $("#id_permiso").val(r.id_permiso);
-                $("#descripcion").val(r.descripcion);
-                $("#nombre").val(r.nombre);
-               
-                
+                } catch (error) {
+                    $.notify({
+                        message: error + "<br/></br>" + respuesta
+                    }, {
+                        type: 'danger',
+                        delay: 0
+                    });
+                }
             });
         }
-   
+    });
 
-        $("#btn-mostrar-filtros").click(function() {
-            $("#div-formulario-busqueda").toggleClass("d-none");
-        });
+    $("#btn-regresar").click(function() {
+        $("#div-tabla").show();
+        $("#div-formulario").hide();
+    });
 
-        $("#btn-buscar").click(function() {
-            cargar_listado();
-        });
-
-     function cargar_listado() {
-         var parametros = $("#formulario-busqueda").serialize() + "&" +
-             $("#formulario-paginacion").serialize();
-         $("#listado").load("?modulo=permiso&accion=listar", parametros);
-     }
-    </script>
+    $("#btn-buscar").click(function() {
+        $("#tr-filtros").toggleClass("d-none");
+    });
+</script>
