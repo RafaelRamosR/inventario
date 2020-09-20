@@ -36,7 +36,7 @@ mysqli_query($conexion, $sql);
 
 if (mysqli_error($conexion) == "") {
     $resultado["error"] = false;
-    $resultado["msg"] = "Datos agregados con éxito.";
+    $resultado["msg"] = "Datos modificados con éxito.";
 } else {
     $resultado["error"] = true;
     $resultado["msg"] = mysqli_error($conexion);
