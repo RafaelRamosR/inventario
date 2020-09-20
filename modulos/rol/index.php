@@ -1,202 +1,236 @@
-<?php
-require_once("conexion.php");
-?>
- <div id="contenedor-listado" class="content mt-3" style="max-width:680px; margin:auto">
+<div class="container mb-5">
+  <div id="div-tabla" class="card">
+    <div class="col-12 card-header">
+      <h2 class="float-left">Registro de roles</h2>
+      <div>
+        <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+        <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=rol&accion=reporte" role="button">Reporte</a>
+        <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
+      </div>
+    </div>
 
-     <div class="card">
-         <div class="card-header">
-             <h4>Rol</h4>
-             <button id="btn-mostrar-filtros" class="btn btn-sm btn-secondary float-right ml-1">Buscar</button>
+    <div id="listado" style="max-height:500px; overflow-y:auto;">
 
-             <button id="btn-agregar" class="btn btn-sm btn-secondary float-right ml-1">Agregar</button>
-         </div>
-         <div id="div-formulario-busqueda" class="card-body d-none">
+    </div>
+  </div>
 
-             <form id="formulario-busqueda">
-                <div class="form-group row">
-                     <label for="rol" class="col-sm-3 col-form-label">Rol</label>
-                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="rol" placeholder="Rol">
-                     </div>
-                 </div>
+  <div id="div-formulario" class="container mt-4" style="max-width:700px; display: none">
+    <div class="card mb-5">
+      <div class="card-header">
+        Agregar rol
+      </div>
 
-              <hr />
-                 <div class="form-group row mb-0">
-                     <div class="col-sm-12 text-right">
-                         <button type="button" id="btn-buscar" class="btn btn-sm btn-secondary">Buscar</button>
-                     </div>
-                 </div>
-             </form>
+      <div class="card-body">
+        <form id="formulario" autocomplete="off">
+          <input type="hidden" name="id_rol" id="id_rol" />
+          <div class="form-group row">
+            <label for="nombre" class="col-sm-3 col-form-label">Nombre del Rol</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+            </div>
+          </div>
+          <hr />
+          <div class="form-group row mb-0">
+            <div class="col-sm-12 text-right">
+              <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
+              <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
+              <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
+            </div>
+          </div>
+        </form>
 
-             
+        <div class="form-group row pt-5">
+          <div id="div-pb" class="col-sm-12 text-center" style="display: none">
+            <img src="img/pb.gif" />
+          </div>
 
-         </div>
-         <div id="listado">
-             <?php
-                require_once("listado.php");
-                ?>
-         </div>
-     </div>
- </div>
+          <div id="div-btn" class="col-sm-12 text-right">
+            <input type="button" class="btn btn-success" id="btn-agregar" value="Guardar">
+            <input type="button" class="btn btn-success" id="btn-modificar" value="Modificar">
+            <input type="button" class="btn btn-secondary" id="btn-regresar" value="Regresar">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+  var pagina_actual = 1;
 
+  function mover_pagina(pagina) {
+    if (pagina < 1) {
+      return;
+    }
 
- <!-- Formulario -->
+    var cantidad_paginas = parseInt($("#cantidad_paginas").val());
+    if (pagina > cantidad_paginas) {
+      return;
+    }
 
- <div id="contenedor-formulario" class="content mt-3" style="width:700px; margin:auto; display:none">
+    pagina_actual = pagina;
+    cargar_tabla();
+  }
 
-     <div class="card">
-         <div class="card-header">
-             <h4 id="titulo"> Añadir Rol </h4>
-         </div>
+  function cargar_tabla() {
+    var parametros = $("#form-filtros").serialize();
+    parametros = parametros + "&pagina_actual=" + pagina_actual;
+    $("#listado").html('<div class="text-center"><img src="img/pb.gif"/></div>');
+    $("#listado").load("?modulo=rol&accion=listar", parametros);
+  }
 
-         <div class="card-body">
-             <form id="formulario" method="post" action="guardar.php">
-                 <input type="hidden" name="id_rol" id="id_rol" />
+  function modificar(id) {
+    $("#div-tabla").hide();
+    $("#div-formulario").show();
+    $("#btn-agregar").hide();
+    $("#btn-modificar").show();
 
-                            <div class="form-group row">
-                     <label for="nombre" class="col-sm-3 col-form-label">Nombre del Rol</label>
-                     <div class="col-sm-9">
-                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-                     </div>
-                 </div>
+    //Limpiar el formulario
+    $("#formulario").trigger("reset");
 
-            
-                 <hr />
-                 <div class="form-group row mb-0">
-                     <div class="col-sm-12 text-right">
-                         <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
-                         <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
-                         <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
-                     </div>
-                 </div>
-             </form>
-         </div>
-     </div>
- <br>    <br>  
+    var parametros = "id=" + id;
+    $.get("?modulo=rol&accion=asignar", parametros, function(respuesta) {
 
+      var r = jQuery.parseJSON(respuesta);
 
+      $("#id_rol").val(r.id_rol);
+      $("#nombre").val(r.nombre);
+    });
+  }
 
+  function eliminar(id) {
+    if (confirm("¿Realmente desea eliminar el registro?")) {
+      var parametros = "id=" + id;
+      $.post("?modulo=rol&accion=eliminar", parametros, function(respuesta) {
+        try {
+          var r = jQuery.parseJSON(respuesta);
+          if (r.error == true) {
+            $.notify({
+              message: r.msg
+            }, {
+              type: 'danger',
+              delay: 0
+            });
+          } else {
+            cargar_tabla();
+            $.notify({
+              message: r.msg
+            }, {
+              type: 'success',
+              delay: 0
+            });
+          }
+        } catch (error) {
+          $.notify({
+            message: error + "<br/></br>" + respuesta
+          }, {
+            type: 'danger',
+            delay: 0
+          });
+        }
+      });
+    }
+  }
 
+  cargar_tabla();
 
+  $("#btn-mostrar-formulario-agregar").click(function() {
+    $("#div-tabla").hide();
+    $("#div-formulario").show();
 
+    //Limpiar el formulario
+    $("#formulario").trigger("reset");
+    $("#btn-agregar").show();
+    $("#btn-modificar").hide();
+  });
 
- </div>
- <!-- Fin formulario -->
- <script type="text/javascript">
-     $("#btn-agregar").click(function() {
-         $("#titulo").html("Añadir Rol");
-         $("#contenedor-listado").hide();
-         $("#contenedor-formulario").show();
+  $("#btn-agregar").click(function() {
+    $.notifyClose();
+    $("#div-pb").show();
+    $("#div-btn").hide();
+    var parametros = $("#formulario").serialize();
+    $.post("?modulo=rol&accion=agregar", parametros, function(respuesta) {
+      $("#div-pb").hide();
+      $("#div-btn").show();
+      try {
+        var r = jQuery.parseJSON(respuesta);
+        if (r.error == true) {
+          $.notify({
+            message: r.msg
+          }, {
+            type: 'danger',
+            delay: 0
+          });
+        } else {
+          cargar_tabla();
+          $("#div-tabla").show();
+          $("#div-formulario").hide();
+          $.notify({
+            message: r.msg
+          }, {
+            type: 'success',
+            delay: 0
+          });
+        }
+      } catch (error) {
+        $.notify({
+          message: error + "<br/></br>" + respuesta
+        }, {
+          type: 'danger',
+          delay: 0
+        });
+      }
+    });
+  });
 
-         $("#btn-guardar").show();
-         $("#btn-modificar").hide();
-         $("#formulario")[0].reset(); //limpiar formulario
-         $("#formulario input, #formulario select").prop("disabled", false);
-     });
+  $("#btn-modificar").click(function() {
+    if (confirm("¿Desea modificar el registro?")) {
+      $.notifyClose();
+      $("#div-pb").show();
+      $("#div-btn").hide();
+      var parametros = $("#formulario").serialize();
+      $.post("?modulo=rol&accion=modificar", parametros, function(respuesta) {
+        $("#div-pb").hide();
+        $("#div-btn").show();
 
-     $("#btn-guardar").click(function() {
-         var parametros = $("#formulario").serialize();
-         $.post("?modulo=rol&accion=agregar", parametros, function(respuesta) {
-             //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-             var r = jQuery.parseJSON(respuesta);
-             alert(r.msg);
-             if (r.error == false) {
-                 $("#contenedor-listado").show();
-                 $("#contenedor-formulario").hide();
+        try {
+          var r = jQuery.parseJSON(respuesta);
+          if (r.error == true) {
+            $.notify({
+              message: r.msg
+            }, {
+              type: 'danger',
+              delay: 0
+            });
+          } else {
+            cargar_tabla();
+            $("#div-tabla").show();
+            $("#div-formulario").hide();
+            $.notify({
+              message: r.msg
+            }, {
+              type: 'success',
+              delay: 0
+            });
+          }
+        } catch (error) {
+          $.notify({
+            message: error + "<br/></br>" + respuesta
+          }, {
+            type: 'danger',
+            delay: 0
+          });
+        }
+      });
+    }
+  });
 
-                 cargar_listado();
-             }
-         });
-     });
+  $("#btn-regresar").click(function() {
+    $("#div-tabla").show();
+    $("#div-formulario").hide();
+  });
 
-     $("#btn-modificar").click(function() {
-         if (confirm("¿Desea modificar el registro?")) {
-             var parametros = $("#formulario").serialize();
-             $.post("?modulo=rol&accion=modificar", parametros, function(respuesta) {
-                 //jQuery.parseJSON convertir la respuesta en JSON en un arreglo asociativo
-                 var r = jQuery.parseJSON(respuesta);
-                 alert(r.msg);
-                 if (r.error == false) {
-                     $("#contenedor-listado").show();
-                     $("#contenedor-formulario").hide();
-                     cargar_listado();
-                 }
-             });
-         }
-     });
-
-     $("#btn-regresar").click(function() {
-         $("#contenedor-listado").show();
-         $("#contenedor-formulario").hide();
-     });
-
-     function mostrar(id_rol) {
-         $("#titulo").html("Mostrar rol");
-         var parametros = "id_rol=" + id_rol;
-         $.get("?modulo=rol&accion=datos", parametros, function(respuesta) {
-             $("#formulario")[0].reset(); //limpiar formulario
-             $("#contenedor-listado").hide();
-             $("#contenedor-formulario").show();
-
-             $("#btn-guardar").hide();
-             $("#btn-modificar").hide();
-
-             $("#formulario")[0].reset(); //limpiar formulario
-             $("#formulario input, #formulario select").prop("disabled", true);
-
-             var r = jQuery.parseJSON(respuesta);
-
-             $("#id_rol").val(r.id_rol);
-             $("#nombre").val(r.nombre);
-         });
-     }
-
-     function eliminar(id_rol) {
-         if (confirm("¿Realmente desea eliminar el registro?")) {
-             var parametros = "id_rol=" + id_rol;
-             $.post("?modulo=rol&accion=eliminar", parametros, function(respuesta) {
-                 var r = jQuery.parseJSON(respuesta);
-                 alert(r.msg);
-                 if (r.error == false) {
-                     cargar_listado();
-                 }
-             });
-         }
-     }
-
-     function modificar(id_rol) {
-         $("#titulo").html("Modificar rol");
-         var parametros = "id_rol=" + id_rol;
-         $.get("?modulo=rol&accion=datos", parametros, function(respuesta) {
-             $("#formulario")[0].reset(); //limpiar formulario
-             $("#contenedor-listado").hide();
-             $("#contenedor-formulario").show();
-
-             $("#btn-guardar").hide();
-             $("#btn-modificar").show();
-             $("#formulario")[0].reset(); //limpiar formulario
-             $("#formulario input, #formulario select").prop("disabled", false);
-        
-             var r = jQuery.parseJSON(respuesta);
-
-            $("#id_rol").val(r.id_rol);
-             $("#nombre").val(r.nombre);
-         });
-     }
-
-     $("#btn-mostrar-filtros").click(function() {
-         $("#div-formulario-busqueda").toggleClass("d-none");
-     });
-
-     $("#btn-buscar").click(function() {
-         $("#pagina_actual").val("1");
-         cargar_listado();
-     });
-
-     function cargar_listado() {
-         var parametros = $("#formulario-busqueda").serialize() + "&" +
-             $("#formulario-paginacion").serialize();
-         $("#listado").load("?modulo=rol&accion=listar", parametros);
-     }
- </script>
+  $("#btn-buscar").click(function() {
+    $("#tr-filtros").toggleClass("d-none");
+  });
+</script>
