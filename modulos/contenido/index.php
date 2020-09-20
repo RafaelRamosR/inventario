@@ -5,8 +5,9 @@
              <div class="col-12">
                  <h2 class="float-left">Registro de contenidos</h2>
                  <div>
-                     <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
-                     <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
+                    <button id="btn-buscar" class="btn btn-sm btn-primary ml-1 float-right">Buscar</button>
+                    <a class="btn btn-sm btn-primary ml-1 float-right" href="?modulo=contenido&accion=reporte" role="button">Reporte</a>
+                    <button id="btn-mostrar-formulario-agregar" class="btn btn-sm btn-success float-right">Agregar</button>
                  </div>
              </div>
          </div>
