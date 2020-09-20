@@ -801,14 +801,14 @@ $modulos["modulo_accion"] = [
 
 $modulos["persona_rol"] = [
     "ruta" => "modulos/persona_rol/",
-    "verificar_permisos" => true,
+    //"verificar_permisos" => true,
     "acciones" => [
         "ver" => [
             "archivo" => "index.php",
             "diseño" => "horizontal"
         ],
         "listar" => [
-            "archivo" => "listado.php",
+            "archivo" => "tabla.php",
             "diseño" => "html"
         ],
         "agregar" => [
@@ -823,10 +823,18 @@ $modulos["persona_rol"] = [
             "archivo" => "eliminar.php",
             "diseño" => "json"
         ],
-        "datos" => [
-            "archivo" => "cargar_datos.php",
+        "asignar" => [
+            "archivo" => "asignar.php",
             "diseño" => "json"
         ],
+        "reporte" => [
+            "archivo" => "reporte.php",
+            "diseño" => "horizontal"
+        ],
+        "descarga" => [
+            "archivo" => "descarga.php",
+            "diseño" => "html"
+        ]
     ]
 ];
 
