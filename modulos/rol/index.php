@@ -29,14 +29,6 @@
               <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
             </div>
           </div>
-          <hr />
-          <div class="form-group row mb-0">
-            <div class="col-sm-12 text-right">
-              <button type="button" id="btn-regresar" class="btn btn-sm btn-light">Regresar</button>
-              <button type="button" id="btn-guardar" class="btn btn-sm btn-secondary">Guardar</button>
-              <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
-            </div>
-          </div>
         </form>
 
         <div class="form-group row pt-5">
