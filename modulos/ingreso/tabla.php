@@ -1,12 +1,14 @@
 <?php
 $filtros = "";
 
-if (isset($_GET['id_producto2']) == true &&                     $_GET['id_producto2']  != "") {
-    $filtros .= " AND e.id_producto = '$_GET[id_producto2]' ";
+if (isset($_GET['nombre']) &&  $_GET['nombre'] != "") {
+    $nombre = $_GET['nombre'];
+    $nombre = str_replace(" ", "%", $nombre);
+    $filtros .= " AND p.nombre LIKE '%$nombre%'";
 }
 
-if (isset($_GET['id_ingreso']) == true &&                       $_GET['id_ingreso']  != "") {
-    $filtros .= " AND e.fecha_ingreso = '$_GET[id_ingreso]' ";
+if (isset($_GET['fecha']) == true &&  $_GET['fecha']  != "") {
+    $filtros .= " AND e.fecha_ingreso = '$_GET[fecha]' ";
 }
 
 $sql_base = "SELECT       
@@ -43,10 +45,10 @@ $sql_final = $sql_base . " LIMIT $primer_registro , $num_reg_paginas  ";
             <tr id="tr-filtros" class="<?php echo $filtros != '' ?  '' : 'd-none' ?>  ">
                 <th scope="col"></th>
                 <th scope="col">
-                    <input type="text" name="identifica" class="form-control form-control-sm" value="<?php echo isset($_GET['identifica']) ? $_GET['identifica'] : ""  ?>" />
+                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
                 </th>
                 <th scope="col">
-                    <input type="text" name="nombre" class="form-control form-control-sm" value="<?php echo isset($_GET['nombre']) ? $_GET['nombre'] : ""  ?>" />
+                    <input type="date" name="fecha" class="form-control form-control-sm" value="<?php echo isset($_GET['fecha']) ? $_GET['fecha'] : ""  ?>" />
                 </th>
                 <th scope="col" style="text-align: center;">
                     <button class="btn btn-sm btn-primary" onclick="mover_pagina('1')">
