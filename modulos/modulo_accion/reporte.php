@@ -1,15 +1,8 @@
 <div class="container mt-5 mb-5" style="max-width:700px">
   <div class="card">
-    <div class="card-header text-center">Reporte de permiso rol</div>
+    <div class="card-header text-center">Reporte de acciones</div>
     <div class="card-body">
-      <form method="post" target="_blank" action="?modulo=permiso_rol&accion=descarga">
-
-        <div class="form-group row">
-          <label for="b_rol" class="col-sm-4 col-form-label">Rol</label>
-          <div class="col-sm-8">
-            <input type="text" name="b_rol" class="form-control form-control-sm" />
-          </div>
-        </div>
+      <form method="post" target="_blank" action="?modulo=modulo_accion&accion=descarga">
 
         <div class="form-group row">
           <label for="b_modulo" class="col-sm-4 col-form-label">Modulo</label>

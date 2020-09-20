@@ -1,6 +1,6 @@
 <div class="container mt-5 mb-5" style="max-width:700px">
   <div class="card">
-    <div class="card-header text-center">Reporte de personas</div>
+    <div class="card-header text-center">Reporte de persona rol</div>
     <div class="card-body">
       <form method="post" target="_blank" action="?modulo=persona_rol&accion=descarga">
 
