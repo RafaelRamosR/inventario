@@ -306,8 +306,8 @@ $sql = "SELECT
             
     <!-- LISTA DE BOTONES CON EVENTOS -->        
             <div class="card-footer text-right">
-                
-                <button type="button" id="btn-modificar" class="btn btn-sm btn-secondary">Modificar</button>
+                <button type="button" id="btn-modificar" class="btn btn-sm btn-success">Modificar</button>
+                <a class="btn btn-sm btn-secondary" href="?modulo=contrasena&accion=ver" role="button">Cambiar clave</a>
             </div>
             
 <!-- FIN DEL FORMULARIO -->

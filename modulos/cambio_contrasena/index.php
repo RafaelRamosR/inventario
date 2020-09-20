@@ -70,7 +70,8 @@ require_once("conexion.php");
                     <hr />
                     <div class="form-group row mb-0">
                         <div class="col-sm-12 text-right">
-                            <input type="button" class="btn btn-secondary" id="btn-aceptar" value="Guardar">
+                            <input type="button" class="btn btn-sm btn-success" id="btn-aceptar" value="Cambiar">
+                            <a class="btn btn-sm btn-secondary" href="?modulo=inicio&accion=ver" role="button">Cancelar</a>
                         </div>
                     </div>
                 </form>
