@@ -2,7 +2,7 @@
 require_once("conexion.php");
 
 
-@$id = $_POST['id_cargo'];
+@$id = $_POST['id'];
 $sql = "DELETE FROM cargo WHERE id_cargo='$id' ";
 mysqli_query($conexion, $sql);
 
@@ -18,6 +18,3 @@ if(mysqli_error($conexion)!="" ) {
 	$r["msg"] = "Registro eliminado con éxito.";
  }
 echo json_encode($r);
-
-
-?>
